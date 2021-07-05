@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.6 Family 2 of analysis : Study the response of varieties under selection over several environments | PPBstats : An R package for Participatory Plant Breeding statisticial analyses</title>
+  <meta name="description" content="Tutorial on how to use the R package PPBstats." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.6 Family 2 of analysis : Study the response of varieties under selection over several environments | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Tutorial on how to use the R package PPBstats." />
+  <meta name="github-repo" content="priviere/PPBstats" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.6 Family 2 of analysis : Study the response of varieties under selection over several environments | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  
+  <meta name="twitter:description" content="Tutorial on how to use the R package PPBstats." />
+  
+
+<meta name="author" content="Pierre Rivière" />
+
+
+<meta name="date" content="2021-07-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="family-1.html">
+<link rel="next" href="family-3.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="../index.html" >PPBstats website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="authors-and-contributors-of-ppbstats-and-the-book.html#authors-and-contributors-of-ppbstats-and-the-book">Authors and contributors of <code>PPBstats</code> and the book</a></li>
+<li class="chapter" data-level="" data-path="copyright-licence-citation.html"><a href="copyright-licence-citation.html"><i class="fa fa-check"></i>Copyright, Licence, citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="philo.html"><a href="philo.html"><i class="fa fa-check"></i><b>1</b> Philosophy of PPBstats</a><ul>
+<li class="chapter" data-level="1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html"><i class="fa fa-check"></i><b>1.1</b> What is Participatory Plant Bredding ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#decentralize-the-selection"><i class="fa fa-check"></i><b>1.1.1</b> Decentralize the selection</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#involve-all-actors-in-the-breeding-decision-process"><i class="fa fa-check"></i><b>1.1.2</b> Involve all actors in the breeding decision process</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objectives-of-ppbstats.html"><a href="objectives-of-ppbstats.html"><i class="fa fa-check"></i><b>1.2</b> Objectives of <code>PPBstats</code></a></li>
+<li class="chapter" data-level="1.3" data-path="contribute.html"><a href="contribute.html"><i class="fa fa-check"></i><b>1.3</b> Contribute</a></li>
+<li class="chapter" data-level="1.4" data-path="design-and-statistical-methods-according-to-the-objectives.html"><a href="design-and-statistical-methods-according-to-the-objectives.html"><i class="fa fa-check"></i><b>1.4</b> Design and statistical methods according to the objectives</a></li>
+<li class="chapter" data-level="1.5" data-path="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><a href="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><i class="fa fa-check"></i><b>1.5</b> Let’s go: install <code>PPBstats</code> and the data used in the book!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>2</b> Analysis of network seed circulation (<strong>M8</strong>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#workflow-and-function-relations-in-ppbstats-regarding-network-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Workflow and function relations in <code>PPBstats</code> regarding network analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html"><i class="fa fa-check"></i><b>2.2</b> Unipart network for seed lots analysis</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#steps-with-ppbstats"><i class="fa fa-check"></i><b>2.2.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#format-the-data"><i class="fa fa-check"></i><b>2.2.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.2.3" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#describe-the-data"><i class="fa fa-check"></i><b>2.2.3</b> Describe the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html"><i class="fa fa-check"></i><b>2.3</b> Unipart network for location analysis</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#steps-with-ppbstats-1"><i class="fa fa-check"></i><b>2.3.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-the-data-1"><i class="fa fa-check"></i><b>2.3.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-germplasm"><i class="fa fa-check"></i><b>2.3.3</b> Format and describe the data for each germplasm</a></li>
+<li class="chapter" data-level="2.3.4" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-year"><i class="fa fa-check"></i><b>2.3.4</b> Format and describe the data for each year</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html"><i class="fa fa-check"></i><b>2.4</b> Bipart network analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#steps-with-ppbstats-2"><i class="fa fa-check"></i><b>2.4.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#format-the-data-2"><i class="fa fa-check"></i><b>2.4.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#describe-the-data-1"><i class="fa fa-check"></i><b>2.4.3</b> Describe the data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="agronomic.html"><a href="agronomic.html"><i class="fa fa-check"></i><b>3</b> Analysis of agronomic traits</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-agro.html"><a href="intro-agro.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-agro.html"><a href="intro-agro.html#objective-agro"><i class="fa fa-check"></i><b>3.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="intro-agro.html"><a href="intro-agro.html#family-analysis-agro"><i class="fa fa-check"></i><b>3.1.2</b> Family of analyses</a></li>
+<li class="chapter" data-level="3.1.3" data-path="intro-agro.html"><a href="intro-agro.html#expe-design"><i class="fa fa-check"></i><b>3.1.3</b> Experimental design</a></li>
+<li class="chapter" data-level="3.1.4" data-path="intro-agro.html"><a href="intro-agro.html#decision-tree"><i class="fa fa-check"></i><b>3.1.4</b> Decision tree</a></li>
+<li class="chapter" data-level="3.1.5" data-path="intro-agro.html"><a href="intro-agro.html#workflow-agro"><i class="fa fa-check"></i><b>3.1.5</b> Workflow and function relations in <code>PPBstats</code> regarding agronomic analysis</a></li>
+<li class="chapter" data-level="3.1.6" data-path="intro-agro.html"><a href="intro-agro.html#data-agro"><i class="fa fa-check"></i><b>3.1.6</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="doe.html"><a href="doe.html"><i class="fa fa-check"></i><b>3.2</b> Design the experiment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="doe.html"><a href="doe.html#fully-replicated"><i class="fa fa-check"></i><b>3.2.1</b> Fully-replicated (<strong>D1</strong>)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="doe.html"><a href="doe.html#ibd"><i class="fa fa-check"></i><b>3.2.2</b> Incomplete Block Design (<strong>D2</strong>)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="doe.html"><a href="doe.html#row-column"><i class="fa fa-check"></i><b>3.2.3</b> Row-column (<strong>D3</strong>)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="doe.html"><a href="doe.html#rf-sf"><i class="fa fa-check"></i><b>3.2.4</b> Regional and satellite farms (<strong>D4</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sow.html"><a href="sow.html"><i class="fa fa-check"></i><b>3.3</b> Sow, note, harvest, measure …</a></li>
+<li class="chapter" data-level="3.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html"><i class="fa fa-check"></i><b>3.4</b> Describe the data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="describe-data-agro.html"><a href="describe-data-agro.html#format-the-data-3"><i class="fa fa-check"></i><b>3.4.1</b> Format the data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="describe-data-agro.html"><a href="describe-data-agro.html#presence-abscence-matrix"><i class="fa fa-check"></i><b>3.4.2</b> presence abscence matrix</a></li>
+<li class="chapter" data-level="3.4.3" data-path="describe-data-agro.html"><a href="describe-data-agro.html#histogramm"><i class="fa fa-check"></i><b>3.4.3</b> histogramm</a></li>
+<li class="chapter" data-level="3.4.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html#barplot"><i class="fa fa-check"></i><b>3.4.4</b> barplot</a></li>
+<li class="chapter" data-level="3.4.5" data-path="describe-data-agro.html"><a href="describe-data-agro.html#boxplot"><i class="fa fa-check"></i><b>3.4.5</b> boxplot</a></li>
+<li class="chapter" data-level="3.4.6" data-path="describe-data-agro.html"><a href="describe-data-agro.html#interaction"><i class="fa fa-check"></i><b>3.4.6</b> interaction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="describe-data-agro.html"><a href="describe-data-agro.html#biplot"><i class="fa fa-check"></i><b>3.4.7</b> biplot</a></li>
+<li class="chapter" data-level="3.4.8" data-path="describe-data-agro.html"><a href="describe-data-agro.html#radar"><i class="fa fa-check"></i><b>3.4.8</b> radar</a></li>
+<li class="chapter" data-level="3.4.9" data-path="describe-data-agro.html"><a href="describe-data-agro.html#raster"><i class="fa fa-check"></i><b>3.4.9</b> raster</a></li>
+<li class="chapter" data-level="3.4.10" data-path="describe-data-agro.html"><a href="describe-data-agro.html#map"><i class="fa fa-check"></i><b>3.4.10</b> map</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="family-1.html"><a href="family-1.html"><i class="fa fa-check"></i><b>3.5</b> Family 1 of analysis : Compare different varieties evaluated for selection in different locations.</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="family-1.html"><a href="family-1.html#decision-tree-1"><i class="fa fa-check"></i><b>3.5.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.5.2" data-path="family-1.html"><a href="family-1.html#workflow-and-function-relations-in-ppbstats-regarding-family-1-of-analysis"><i class="fa fa-check"></i><b>3.5.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 1 of analysis</a></li>
+<li class="chapter" data-level="3.5.3" data-path="family-1.html"><a href="family-1.html#classic-anova"><i class="fa fa-check"></i><b>3.5.3</b> Classic ANOVA (<strong>M4a</strong>)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="family-1.html"><a href="family-1.html#spatial-analysis"><i class="fa fa-check"></i><b>3.5.4</b> Spatial analysis (<strong>M4b</strong>)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="family-1.html"><a href="family-1.html#ibd-model"><i class="fa fa-check"></i><b>3.5.5</b> Mixted model for incomplete block design (<strong>M5</strong>)</a></li>
+<li class="chapter" data-level="3.5.6" data-path="family-1.html"><a href="family-1.html#model-1"><i class="fa fa-check"></i><b>3.5.6</b> Hierarchical Bayesian intra-location model to perform mean comparisons with each farm (<strong>M7a</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="family-2.html"><a href="family-2.html"><i class="fa fa-check"></i><b>3.6</b> Family 2 of analysis : Study the response of varieties under selection over several environments</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="family-2.html"><a href="family-2.html#decision-tree-2"><i class="fa fa-check"></i><b>3.6.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.6.2" data-path="family-2.html"><a href="family-2.html#workflow-and-function-relations-in-ppbstats-regarding-family-2-of-analysis"><i class="fa fa-check"></i><b>3.6.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 2 of analysis</a></li>
+<li class="chapter" data-level="3.6.3" data-path="family-2.html"><a href="family-2.html#ammi"><i class="fa fa-check"></i><b>3.6.3</b> AMMI (<strong>M6a</strong>)</a></li>
+<li class="chapter" data-level="3.6.4" data-path="family-2.html"><a href="family-2.html#gge"><i class="fa fa-check"></i><b>3.6.4</b> GGE (<strong>M6b</strong>)</a></li>
+<li class="chapter" data-level="3.6.5" data-path="family-2.html"><a href="family-2.html#model-2"><i class="fa fa-check"></i><b>3.6.5</b> Hierarchical Bayesian <span class="math inline">\(G \times E\)</span> model to analyse <span class="math inline">\(G \times E\)</span> interaction in the network of farms (<strong>M7b</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="family-3.html"><a href="family-3.html"><i class="fa fa-check"></i><b>3.7</b> Family 3 of analysis : effects from family 1 and 2 in a network of farms</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="family-3.html"><a href="family-3.html#model-3"><i class="fa fa-check"></i><b>3.7.1</b> model 3</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="family-4.html"><a href="family-4.html"><i class="fa fa-check"></i><b>3.8</b> Family 4 of analysis : specific research questions on one farm or more</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="family-4.html"><a href="family-4.html#response-to-selection"><i class="fa fa-check"></i><b>3.8.1</b> Study reponse to selection</a></li>
+<li class="chapter" data-level="3.8.2" data-path="family-4.html"><a href="family-4.html#study-local-adaptation"><i class="fa fa-check"></i><b>3.8.2</b> Study local adaptation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="family-4.html"><a href="family-4.html#variance-intra"><i class="fa fa-check"></i><b>3.8.3</b> Study variance within germplasm</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="family-5.html"><a href="family-5.html"><i class="fa fa-check"></i><b>3.9</b> Family 5 of analysis : multivariate analysis</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="family-5.html"><a href="family-5.html#decision-tree-3"><i class="fa fa-check"></i><b>3.9.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.9.2" data-path="family-5.html"><a href="family-5.html#workflow-and-function-relations-in-ppbstats-regarding-family-2-of-analysis-1"><i class="fa fa-check"></i><b>3.9.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 2 of analysis</a></li>
+<li class="chapter" data-level="3.9.3" data-path="family-5.html"><a href="family-5.html#steps-with-ppbstats-12"><i class="fa fa-check"></i><b>3.9.3</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="3.9.4" data-path="family-5.html"><a href="family-5.html#format-the-data-11"><i class="fa fa-check"></i><b>3.9.4</b> Format the data</a></li>
+<li class="chapter" data-level="3.9.5" data-path="family-5.html"><a href="family-5.html#look-at-correlation"><i class="fa fa-check"></i><b>3.9.5</b> Look at correlation</a></li>
+<li class="chapter" data-level="3.9.6" data-path="family-5.html"><a href="family-5.html#run-the-analysis"><i class="fa fa-check"></i><b>3.9.6</b> Run the analysis</a></li>
+<li class="chapter" data-level="3.9.7" data-path="family-5.html"><a href="family-5.html#check-outputs-and-results"><i class="fa fa-check"></i><b>3.9.7</b> Check outputs and results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="organoleptic.html"><a href="organoleptic.html"><i class="fa fa-check"></i><b>4</b> Sensory analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="intro-organo.html"><a href="intro-organo.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="intro-organo.html"><a href="intro-organo.html#objective-organo"><i class="fa fa-check"></i><b>4.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intro-organo.html"><a href="intro-organo.html#decision-tree-organo"><i class="fa fa-check"></i><b>4.1.2</b> Decision tree</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intro-organo.html"><a href="intro-organo.html#workflow-organo"><i class="fa fa-check"></i><b>4.1.3</b> Workflow and function relations in <code>PPBstats</code> regarding organoleptic analysis</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intro-organo.html"><a href="intro-organo.html#data-organo"><i class="fa fa-check"></i><b>4.1.4</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="taste.html"><a href="taste.html"><i class="fa fa-check"></i><b>4.2</b> Taste and measure …</a></li>
+<li class="chapter" data-level="4.3" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>4.3</b> Hedonic analysis (<strong>M9b</strong>)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="hedonic.html"><a href="hedonic.html#method-description"><i class="fa fa-check"></i><b>4.3.1</b> Method description</a></li>
+<li class="chapter" data-level="4.3.2" data-path="hedonic.html"><a href="hedonic.html#steps-with-ppbstats-13"><i class="fa fa-check"></i><b>4.3.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="hedonic.html"><a href="hedonic.html#format-the-data-12"><i class="fa fa-check"></i><b>4.3.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.3.4" data-path="hedonic.html"><a href="hedonic.html#describe-the-data-4"><i class="fa fa-check"></i><b>4.3.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.3.5" data-path="hedonic.html"><a href="hedonic.html#run-the-model-9"><i class="fa fa-check"></i><b>4.3.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.3.6" data-path="hedonic.html"><a href="hedonic.html#check-and-visualize-model-outputs-9"><i class="fa fa-check"></i><b>4.3.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.3.7" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-mean-comparisons-on-note"><i class="fa fa-check"></i><b>4.3.7</b> Get and visualize mean comparisons on note</a></li>
+<li class="chapter" data-level="4.3.8" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-biplot-regarding-samples-ca-and-juges-hcpc"><i class="fa fa-check"></i><b>4.3.8</b> Get and visualize biplot regarding samples (CA) and juges (HCPC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="napping.html"><a href="napping.html"><i class="fa fa-check"></i><b>4.4</b> Napping analysis (<strong>M9a</strong>)</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="napping.html"><a href="napping.html#method-description-1"><i class="fa fa-check"></i><b>4.4.1</b> Method description</a></li>
+<li class="chapter" data-level="4.4.2" data-path="napping.html"><a href="napping.html#steps-with-ppbstats-14"><i class="fa fa-check"></i><b>4.4.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="napping.html"><a href="napping.html#format-the-data-13"><i class="fa fa-check"></i><b>4.4.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.4.4" data-path="napping.html"><a href="napping.html#describe-the-data-5"><i class="fa fa-check"></i><b>4.4.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.4.5" data-path="napping.html"><a href="napping.html#run-the-model-10"><i class="fa fa-check"></i><b>4.4.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.4.6" data-path="napping.html"><a href="napping.html#check-and-visualize-model-outputs-10"><i class="fa fa-check"></i><b>4.4.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.4.7" data-path="napping.html"><a href="napping.html#get-and-visualize-biplot-2"><i class="fa fa-check"></i><b>4.4.7</b> Get and visualize biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="rank.html"><a href="rank.html"><i class="fa fa-check"></i><b>4.5</b> Rank analysis (<strong>M9c</strong>)</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="rank.html"><a href="rank.html#method-description-2"><i class="fa fa-check"></i><b>4.5.1</b> Method description</a></li>
+<li class="chapter" data-level="4.5.2" data-path="rank.html"><a href="rank.html#steps-with-ppbstats-15"><i class="fa fa-check"></i><b>4.5.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="rank.html"><a href="rank.html#format-the-data-14"><i class="fa fa-check"></i><b>4.5.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.5.4" data-path="rank.html"><a href="rank.html#run-the-model-11"><i class="fa fa-check"></i><b>4.5.4</b> Run the model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="molecular.html"><a href="molecular.html"><i class="fa fa-check"></i><b>5</b> Molecular analysis (<strong>M3</strong>)</a></li>
+<li class="chapter" data-level="6" data-path="com.html"><a href="com.html"><i class="fa fa-check"></i><b>6</b> Communicate results to farmers</a><ul>
+<li class="chapter" data-level="6.1" data-path="com-technic.html"><a href="com-technic.html"><i class="fa fa-check"></i><b>6.1</b> Technical aspects</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="com-technic.html"><a href="com-technic.html#run-the-analysis-1"><i class="fa fa-check"></i><b>6.1.1</b> Run the analysis</a></li>
+<li class="chapter" data-level="6.1.2" data-path="com-technic.html"><a href="com-technic.html#create-a-.rmd-template"><i class="fa fa-check"></i><b>6.1.2</b> Create a <code>.Rmd</code> template</a></li>
+<li class="chapter" data-level="6.1.3" data-path="com-technic.html"><a href="com-technic.html#generate-a-report-for-each-location"><i class="fa fa-check"></i><b>6.1.3</b> Generate a report for each location</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="com-rules.html"><a href="com-rules.html"><i class="fa fa-check"></i><b>6.2</b> Organisational aspects on collective work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="../index.html" target="_blank">PPBstats website</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>PPBstats</code> : An <code>R</code> package for Participatory Plant Breeding statisticial analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="family-2" class="section level2">
+<h2><span class="header-section-number">3.6</span> Family 2 of analysis : Study the response of varieties under selection over several environments</h2>
+<p><strong>Family 2</strong> gathers analyses that estimate germplasm and location and interaction effects.
+This is to analyse the response over a network of locations.
+Estimation of environment and year effects is possible depending of the model.
+Specific analysis including migrant and residant can also be done.
+It allows to study the response of germplasm over several location or environments.
+The objectives is to study response of germplasm over several locations for selection.</p>
+<div id="decision-tree-2" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Decision tree</h3>
+<p>To study response of germplasm over several locations for selection, different scenario are possible (Figure <a href="family-2.html#fig:decision-tree-Study-the-response-of-varieties-under-selection-over-several-environments">3.24</a>) :</p>
+<ul>
+<li>AMMI and GGE (<strong>M6</strong>, sections <a href="family-2.html#ammi">3.6.3</a> and <a href="family-2.html#gge">3.6.4</a>) based on on fully replicated designs (<strong>D1</strong>, section <a href="doe.html#fully-replicated">3.2.1</a>),</li>
+<li>bayesian hierarchical model <span class="math inline">\(G \times E\)</span> (<strong>M7b</strong>, section <a href="family-2.html#model-2">3.6.5</a>) based on satellite-regional farms designs (<strong>D4</strong>, section <a href="doe.html#rf-sf">3.2.4</a>),</li>
+</ul>
+<p>It can be completed by specific analysis such as migrant-residant (section <a href="#migrant-residant"><strong>??</strong></a>) which corresponds to a specific objective : study migrant and residant effect, where migrant in a location refers to a germplasm that has not been grown or selected in a given location and resident in a location refers to a germplasm that has been grown or selected in a given location.</p>
+<div class="figure" style="text-align: center"><span id="fig:decision-tree-Study-the-response-of-varieties-under-selection-over-several-environments"></span>
+<img src="figures/decision-tree_Study-the-response-of-varieties-under-selection-over-several-environments.png" alt="Decision tree with experimental constraints, designs and methods of agronomic analysis carry out in `PPBstats` regarding the objective :Study the response of varieties under selection over several environments. **D** refers to designs and **M** to methods." width="100%" />
+<p class="caption">
+Figure 3.24: Decision tree with experimental constraints, designs and methods of agronomic analysis carry out in <code>PPBstats</code> regarding the objective :Study the response of varieties under selection over several environments. <strong>D</strong> refers to designs and <strong>M</strong> to methods.
+</p>
+</div>
+</div>
+<div id="workflow-and-function-relations-in-ppbstats-regarding-family-2-of-analysis" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Workflow and function relations in <code>PPBstats</code> regarding family 2 of analysis</h3>
+<p>Figure <a href="family-2.html#fig:main-workflow-family-2">3.25</a> displays the functions and their relationships.
+Table <a href="family-2.html#tab:function-descriptions-workflow-family-2">3.3</a> describes each of the main functions.</p>
+<p>You can have more information for each function by typing <code>?function_name</code> in your R session.
+Note that <code>check_model()</code>, <code>mean_comparison()</code>, <code>biplot_data()</code> and <code>plot()</code> are S3 method.
+Therefore, you should type <code>?check_model</code>, <code>?mean_comparison</code>, <code>?biplot_data</code> or <code>?plot.PPBstats</code> to have general features and then see in details for specific functions.</p>
+<div class="figure" style="text-align: center"><span id="fig:main-workflow-family-2"></span>
+<img src="figures/main-functions-agro-family-2.png" alt="Main functions used in the workflow of family 1." width="90%" />
+<p class="caption">
+Figure 3.25: Main functions used in the workflow of family 1.
+</p>
+</div>
+<table>
+<caption><span id="tab:function-descriptions-workflow-family-2">Table 3.3: </span> Function description.</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>function name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>design_experiment</code></td>
+<td>Provides experimental design for the different situations corresponding to the choosen family of analysis</td>
+</tr>
+<tr class="even">
+<td><code>format_data_PPBstats</code></td>
+<td>Check and format the data to be used in <code>PPBstats</code> functions</td>
+</tr>
+<tr class="odd">
+<td><code>model_bh_GxE</code></td>
+<td>Run Hierarchical Bayesian GxE model</td>
+</tr>
+<tr class="even">
+<td><code>model_GxE</code></td>
+<td>Run AMMI or GGE model</td>
+</tr>
+<tr class="odd">
+<td><code>check_model</code></td>
+<td>Check if the model went well</td>
+</tr>
+<tr class="even">
+<td><code>mean_comparisons</code></td>
+<td>Get mean comparisons</td>
+</tr>
+<tr class="odd">
+<td><code>parameter_groups</code></td>
+<td>Get groups of parameters based on multivariate analysis</td>
+</tr>
+<tr class="even">
+<td><code>cross_validation_model_bh_GxE</code></td>
+<td>Run complete cross validation with Hierarchical Bayesian GxE model</td>
+</tr>
+<tr class="odd">
+<td><code>predict_the_past_model_bh_GxE</code></td>
+<td>predict values of germplasms in environments where they have not been grown based on Hierarchical Bayesian GxE model</td>
+</tr>
+<tr class="even">
+<td><code>biplot_data</code></td>
+<td>Compute ecovalence and format PCA results regarding <span class="math inline">\(G \times E\)</span> models</td>
+</tr>
+<tr class="odd">
+<td><code>plot</code></td>
+<td>Build ggplot objects to visualize output</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div id="ammi" class="section level3">
+<h3><span class="header-section-number">3.6.3</span> AMMI (<strong>M6a</strong>)</h3>
+<div id="theory-of-the-model-3" class="section level4">
+<h4><span class="header-section-number">3.6.3.1</span> Theory of the model</h4>
+<p>The experimental design used is fully replicated (<strong>D1</strong>).
+The Additive Main effects and Multiplicative Interaction (AMMI) model is based on frequentist statistics (section <a href="intro-agro.html#section-freq">3.1.2.1</a>).
+The analysis can be broken down in two steps <span class="citation">(Gauch <a href="#ref-gauch_statistical_2006">2006</a>)</span><span class="citation">(Gauch, Piepho, and Annicchiarico <a href="#ref-gauch_statistical_2008">2008</a>)</span><span class="citation">(Yan et al. <a href="#ref-yan_gge_2007">2007</a>)</span> :</p>
+<ol style="list-style-type: decimal">
+<li>an <strong>ANOVA</strong> with the following model :</li>
+</ol>
+<p><span class="math inline">\(Y_{ijk} = \mu + \alpha_{i} + \theta_{j} + rep_{k}(\theta_{j}) + (\alpha\theta)_{ij} + \varepsilon_{ijk}; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijk}\)</span> the phenotypic value for replication <span class="math inline">\(k\)</span>, germplasm <span class="math inline">\(i\)</span> and location <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(\mu\)</span> the general mean,</li>
+<li><span class="math inline">\(\alpha_{i}\)</span> the effect of germplasm <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(\theta_{j}\)</span> the effect of location <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(rep_{k}(\theta_{j})\)</span> the effect of the replication <span class="math inline">\(k\)</span> nested in location,</li>
+<li><span class="math inline">\((\alpha\theta)_{ij}\)</span> the interaction effect of germplasm <span class="math inline">\(\times\)</span> location,</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> the residuals.</li>
+</ul>
+<p>Or, if there are several years in the data set:</p>
+<p><span class="math inline">\(Y_{ijkl} = \mu + \alpha_{i} + \theta_{j} + \beta_{l} + (\alpha\theta)_{ij} + (\alpha\beta)_{il} + (\theta\beta)_{jl} + rep_{k}((\theta\beta)_{jl}) + \varepsilon_{ijkl}; \quad \varepsilon_{ijkl} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijkl}\)</span> the phenotypic value for replication <span class="math inline">\(k\)</span>, germplasm <span class="math inline">\(i\)</span>, location <span class="math inline">\(j\)</span> and year <span class="math inline">\(l\)</span>,</li>
+<li><span class="math inline">\(\beta_{l}\)</span> the year <span class="math inline">\(l\)</span> effect,</li>
+<li><span class="math inline">\((\alpha\beta)_{il}\)</span> the germplasm <span class="math inline">\(\times\)</span> year interaction effect,</li>
+<li><span class="math inline">\((\theta\beta)_{jl}\)</span> the location <span class="math inline">\(\times\)</span> year interaction effect,</li>
+<li><span class="math inline">\(rep_{k}((\theta\beta)_{jl})\)</span> the effect of the replication <span class="math inline">\(k\)</span> nested in location <span class="math inline">\(\times\)</span> year,</li>
+<li><span class="math inline">\(\varepsilon_{ijkl}\)</span> the residuals,<br />
+</li>
+<li>and all other effects are the same as in the previous model.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>a <strong>PCA</strong> that focus on the germplasm <span class="math inline">\(\times\)</span> location interaction :</li>
+</ol>
+<p><span class="math inline">\((\alpha\theta)_{ij} = \sum_{n}^{N} \lambda_{n} \gamma_{in} \omega_{jn}\)</span><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>which can also be written :</p>
+<p><span class="math inline">\((\alpha\theta)_{ij} = \sum_{n}^{N} (\sqrt{\lambda_{n}} \gamma_{in}) (\sqrt{\lambda_{n}} \omega_{jn})\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\((\alpha\theta)_{ij}\)</span> the interaction between germplasm <span class="math inline">\(i\)</span> and location <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(N\)</span> the number of dimensions (PCA componants) which has as maximum value the number of location,</li>
+<li><span class="math inline">\(\lambda_{n}\)</span> the eigen value for componant <span class="math inline">\(n\)</span>,</li>
+<li><span class="math inline">\(\gamma_{in}\)</span> the eigen vector for germplasm <span class="math inline">\(i\)</span> and componant <span class="math inline">\(n\)</span>,</li>
+<li><span class="math inline">\(\omega_{jn}\)</span> the eigen vector for location <span class="math inline">\(j\)</span> and componant <span class="math inline">\(n\)</span>.</li>
+</ul>
+<p>The data are double centered on location and germplasm.
+The PCA studies the structure of the interaction matrix.
+The locations are the variables and the germplasms are the individuals.</p>
+<p>This PCA allows to detect</p>
+<ul>
+<li>germplasm that are stable (i.e. contribute less to the interaction)</li>
+<li>the germplasm that interact the most and with which location</li>
+<li>the location that have the same profile regarding interaction</li>
+</ul>
+</div>
+<div id="steps-with-ppbstats-5" class="section level4">
+<h4><span class="header-section-number">3.6.3.2</span> Steps with <code>PPBstats</code></h4>
+<p>For AMMI analysis, you can follow these steps (Figure <a href="intro-agro.html#fig:main-workflow">3.2</a>):</p>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_GxE()</code> and <code>gxe_analysis = &quot;AMMI&quot;</code></li>
+<li>Check model outputs to know if you can continue the analysis with <code>check_model()</code> and vizualise it with <code>plot()</code></li>
+<li>Get mean comparisons for each factor with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+<li>Get and visualize biplot with <code>biplot_data()</code> and <code>plot()</code></li>
+<li>Get groups of each parameters with <code>parameters_groups()</code> and visualise it with <code>plot()</code></li>
+</ul>
+</div>
+<div id="format-the-data-7" class="section level4">
+<h4><span class="header-section-number">3.6.3.3</span> Format the data</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(data_model_GxE)
+data_model_GxE =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_GxE, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_model_GxE)</code></pre>
+<pre><code>##                  seed_lot location     long      lat year germplasm block
+## 1 germ-12_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-12     1
+## 2  germ-1_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-1     1
+## 3 germ-18_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-18     1
+## 4 germ-14_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-14     1
+## 5  germ-6_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-6     1
+## 6  germ-4_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-4     1
+##   X Y       y1    y1$date       y2    y2$date       y3    y3$date desease
+## 1 A 1 14.32724 2017-07-15 41.85377 2017-07-15 66.05498 2017-07-15     low
+## 2 A 2 23.03428 2017-07-15 37.38970 2017-07-15 63.39528 2017-07-15     low
+## 3 A 3 24.91349 2017-07-15 38.38628 2017-07-15 60.52710 2017-07-15    high
+## 4 A 4 24.99078 2017-07-15 39.72205 2017-07-15 60.80393 2017-07-15     low
+## 5 A 5 18.95340 2017-07-15 46.60443 2017-07-15 53.71210 2017-07-15    high
+## 6 B 1 21.31660 2017-07-15 49.94656 2017-07-15 60.71978 2017-07-15  medium
+##   vigor y1$date_julian y2$date_julian y3$date_julian
+## 1     l            195            195            195
+## 2     l            195            195            195
+## 3     h            195            195            195
+## 4     l            195            195            195
+## 5     m            195            195            195
+## 6     l            195            195            195</code></pre>
+</div>
+<div id="run-the-model-3" class="section level4">
+<h4><span class="header-section-number">3.6.3.4</span> Run the model</h4>
+<p>To run model GxE on the dataset, used the function <code>model_GxE</code>.
+You can run it on one variable.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y1&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;AMMI&quot;</span>)</code></pre>
+<pre><code>## AMMI model done for y1</code></pre>
+<p><code>out_ammi</code> is a list containing three elements :</p>
+<ul>
+<li><code>info</code> : a list with variable and gxe_analysis</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>info</code></pre>
+<pre><code>## $variable
+## [1] &quot;y1&quot;
+## 
+## $gxe_analysis
+## [1] &quot;AMMI&quot;</code></pre>
+<ul>
+<li><code>ANOVA</code> a list with five elements :
+<ul>
+<li><code>model</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>model</code></pre>
+<pre><code>## 
+## Call:
+## stats::lm(formula = variable ~ germplasm * location + block %in% 
+##     location, data = data)
+## 
+## Coefficients:
+##           (Intercept)             germplasm1             germplasm2  
+##              20.70849                0.50554                0.63312  
+##            germplasm3             germplasm4             germplasm5  
+##              -1.20916                0.29679                0.35626  
+##            germplasm6             germplasm7             germplasm8  
+##               1.33065               -1.52504               -0.56769  
+##            germplasm9            germplasm10            germplasm11  
+##              -0.73263               -0.34611                0.37692  
+##           germplasm12            germplasm13            germplasm14  
+##              -2.08334               -0.72075               -0.38939  
+##           germplasm15            germplasm16            germplasm17  
+##               1.09734               -1.19621                0.16386  
+##           germplasm18            germplasm19              location1  
+##               0.72661                1.49549               -0.44147  
+##             location2   germplasm1:location1   germplasm2:location1  
+##               4.88085                1.09629               -0.60915  
+##  germplasm3:location1   germplasm4:location1   germplasm5:location1  
+##               0.81094                0.91505                0.70964  
+##  germplasm6:location1   germplasm7:location1   germplasm8:location1  
+##               2.42945               -3.58258               -0.35926  
+##  germplasm9:location1  germplasm10:location1  germplasm11:location1  
+##               3.36809                0.77027                1.18556  
+## germplasm12:location1  germplasm13:location1  germplasm14:location1  
+##              -3.67906               -3.89984                0.86540  
+## germplasm15:location1  germplasm16:location1  germplasm17:location1  
+##               0.33758               -0.35726                0.72636  
+## germplasm18:location1  germplasm19:location1   germplasm1:location2  
+##              -0.33219               -0.33242               -2.03698  
+##  germplasm2:location2   germplasm3:location2   germplasm4:location2  
+##              -1.15072               -2.28962               -3.06243  
+##  germplasm5:location2   germplasm6:location2   germplasm7:location2  
+##               3.82029               -1.85852                0.06938  
+##  germplasm8:location2   germplasm9:location2  germplasm10:location2  
+##               4.47337               -1.71149               -1.52013  
+## germplasm11:location2  germplasm12:location2  germplasm13:location2  
+##              -0.40986               -0.43476                1.55058  
+## germplasm14:location2  germplasm15:location2  germplasm16:location2  
+##               1.83102               -1.18392                3.30243  
+## germplasm17:location2  germplasm18:location2  germplasm19:location2  
+##              -2.87038                2.27662                0.89072  
+##  locationloc-1:block1   locationloc-2:block1   locationloc-3:block1  
+##              -0.93928               -0.42509               -1.23391  
+##  locationloc-1:block2   locationloc-2:block2   locationloc-3:block2  
+##              -0.22936                0.54463                1.20472</code></pre>
+<ul>
+<li><code>anova_model</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>anova_model</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: variable
+##                     Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
+## germplasm           19  190.66   10.03  0.3712   0.9921    
+## location             2 2623.54 1311.77 48.5185 5.69e-16 ***
+## germplasm:location  38  825.18   21.72  0.8032   0.7778    
+## location:block       6  115.34   19.22  0.7110   0.6414    
+## Residuals          114 3082.16   27.04                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ul>
+<li><code>germplasm_effects</code> a list of two elements :
+<ul>
+<li><code>effects</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>germplasm_effects<span class="op">$</span>effects</code></pre>
+<pre><code>##     germ-1    germ-10    germ-11    germ-12    germ-13    germ-14 
+##  0.5055402  0.6331183 -1.2091564  0.2967890  0.3562593  1.3306487 
+##    germ-15    germ-16    germ-17    germ-18    germ-19     germ-2 
+## -1.5250386 -0.5676933 -0.7326310 -0.3461143  0.3769158 -2.0833355 
+##    germ-20     germ-3     germ-4     germ-5     germ-6     germ-7 
+## -0.7207485 -0.3893941  1.0973419 -1.1962053  0.1638570  0.7266050 
+##     germ-8     germ-9 
+##  1.4954919  1.7877499</code></pre>
+<ul>
+<li><code>intra_variance</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>germplasm_effects<span class="op">$</span>intra_variance</code></pre>
+<pre><code>##    germ-1   germ-10   germ-11   germ-12   germ-13   germ-14   germ-15 
+## 15.965283 57.489583 20.790956 28.830542 26.605904 23.161228 17.215151 
+##   germ-16   germ-17   germ-18   germ-19    germ-2   germ-20    germ-3 
+## 12.059959 11.686595  9.479899 28.873479  3.196085  6.935395 16.472166 
+##    germ-4    germ-5    germ-6    germ-7    germ-8    germ-9 
+## 23.173849 17.368449  6.871368 20.497187 24.386542 14.210313</code></pre></li>
+<li><code>location_effects</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>location_effects<span class="op">$</span>effects</code></pre>
+<pre><code>##      loc-1      loc-2      loc-3 
+## -0.4414718  4.8808480 -4.4393762</code></pre>
+<ul>
+<li><code>interaction_matrix</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>ANOVA<span class="op">$</span>interaction_matrix</code></pre>
+<pre><code>##               loc-1      loc-2       loc-3
+## germ-1    3.2888840 -6.1109476   2.8220636
+## germ-10  -1.8274574 -3.4521497   5.2796071
+## germ-11   2.4328152 -6.8688494   4.4360343
+## germ-12   2.7451353 -9.1872828   6.4421475
+## germ-13   2.1289332 11.4608593 -13.5897926
+## germ-14   7.2883513 -5.5755577  -1.7127936
+## germ-15 -10.7477266  0.2081494  10.5395772
+## germ-16  -1.0777893 13.4201231 -12.3423338
+## germ-17  10.1042791 -5.1344588  -4.9698203
+## germ-18   2.3107988 -4.5603999   2.2496011
+## germ-19   3.5566803 -1.2295908  -2.3270895
+## germ-2  -11.0371806 -1.3042889  12.3414695
+## germ-20 -11.6995299  4.6517539   7.0477760
+## germ-3    2.5961932  5.4930572  -8.0892504
+## germ-4    1.0127320 -3.5517623   2.5390302
+## germ-5   -1.0717718  9.9072942  -8.8355224
+## germ-6    2.1790898 -8.6111402   6.4320504
+## germ-7   -0.9965810  6.8298624  -5.8332814
+## germ-8   -0.9972688  2.6721465  -1.6748777
+## germ-9   -0.1885867  0.9431820  -0.7545954</code></pre></li>
+<li><code>PCA</code> : PCA object from FactoMineR</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi<span class="op">$</span>PCA</code></pre>
+<pre><code>## **Results for the Principal Component Analysis (PCA)**
+## The analysis was performed on 20 individuals, described by 3 variables
+## *The results are available in the following objects:
+## 
+##    name               description                          
+## 1  &quot;$eig&quot;             &quot;eigenvalues&quot;                        
+## 2  &quot;$var&quot;             &quot;results for the variables&quot;          
+## 3  &quot;$var$coord&quot;       &quot;coord. for the variables&quot;           
+## 4  &quot;$var$cor&quot;         &quot;correlations variables - dimensions&quot;
+## 5  &quot;$var$cos2&quot;        &quot;cos2 for the variables&quot;             
+## 6  &quot;$var$contrib&quot;     &quot;contributions of the variables&quot;     
+## 7  &quot;$ind&quot;             &quot;results for the individuals&quot;        
+## 8  &quot;$ind$coord&quot;       &quot;coord. for the individuals&quot;         
+## 9  &quot;$ind$cos2&quot;        &quot;cos2 for the individuals&quot;           
+## 10 &quot;$ind$contrib&quot;     &quot;contributions of the individuals&quot;   
+## 11 &quot;$call&quot;            &quot;summary statistics&quot;                 
+## 12 &quot;$call$centre&quot;     &quot;mean of the variables&quot;              
+## 13 &quot;$call$ecart.type&quot; &quot;standard error of the variables&quot;    
+## 14 &quot;$call$row.w&quot;      &quot;weights for the individuals&quot;        
+## 15 &quot;$call$col.w&quot;      &quot;weights for the variables&quot;</code></pre>
+</div>
+<div id="check-and-visualize-model-outputs-3" class="section level4">
+<h4><span class="header-section-number">3.6.3.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.</p>
+<div id="check-the-model-3" class="section level5">
+<h5><span class="header-section-number">3.6.3.5.1</span> Check the model</h5>
+<p>Once the model is run, it is necessary to check if the outputs can be taken with confidence.
+This step is needed before going ahead in the analysis (in fact, object used in the next functions must come from <code>check_model()</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_check_ammi =<span class="st"> </span><span class="kw">check_model</span>(out_ammi)</code></pre>
+<p><code>out_check_ammi</code> is a list containing four elements :</p>
+<ul>
+<li><code>model_GxE</code> the output from the model</li>
+<li><code>data_ggplot</code> a list containing information for ggplot:
+<ul>
+<li><code>data_ggplot_residuals</code> a list containing :
+<ul>
+<li><code>data_ggplot_normality</code></li>
+<li><code>data_ggplot_skewness_test</code></li>
+<li><code>data_ggplot_kurtosis_test</code></li>
+<li><code>data_ggplot_shapiro_test</code></li>
+<li><code>data_ggplot_qqplot</code></li>
+</ul></li>
+<li><code>data_ggplot_variability_repartition_pie</code></li>
+<li><code>data_ggplot_var_intra</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-outputs-3" class="section level5">
+<h5><span class="header-section-number">3.6.3.5.2</span> Visualize outputs</h5>
+<p>Once the computation is done, you can visualize the results with <code>plot()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi =<span class="st"> </span><span class="kw">plot</span>(out_check_ammi)</code></pre>
+<p><code>p_out_check_ammi</code> is a list with:</p>
+<ul>
+<li><code>residuals</code>
+<ul>
+<li><code>histogram</code> : histogram with the distribution of the residuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>residuals<span class="op">$</span>histogram</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<img src="PPBstats_book_files/figure-html/unnamed-chunk-191-1.png" width="672" />
+<ul>
+<li><code>qqplot</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>residuals<span class="op">$</span>qqplot</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<ul>
+<li><code>points</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>residuals<span class="op">$</span>points</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p></li>
+<li><p><code>variability_repartition</code> : pie with repartition of SumSq for each factor</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>variability_repartition</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<ul>
+<li><code>variance_intra_germplasm</code> : repartition of the residuals for each germplasm (see Details for more information)
+With the hypothesis than the micro-environmental variation is equaly distributed on all the individuals (i.e. all the plants), the distribution of each germplasm represent the intra-germplasm variance.
+This has to been seen with caution:
+<ul>
+<li>If germplasm have no intra-germplasm variance (i.e. pure line or hybrides) then the distribution of each germplasm represent only the micro-environmental variation.</li>
+<li>If germplasm have intra-germplasm variance (i.e. population such as landraces for example) then the distribution of each germplasm represent the micro-environmental variation plus the intra-germplasm variance.</li>
+</ul></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>variance_intra_germplasm</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<ul>
+<li><code>pca_composante_variance</code> : variance caught by each dimension of the PCA run on the interaction matrix</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_ammi<span class="op">$</span>pca_composante_variance</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-visualize-mean-comparisons-3" class="section level4">
+<h4><span class="header-section-number">3.6.3.6</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.</p>
+<div id="get-mean-comparisons-3" class="section level5">
+<h5><span class="header-section-number">3.6.3.6.1</span> Get mean comparisons</h5>
+<p>Get mean comparisons with <code>mean_comparisons()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_mean_comparisons_ammi =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_ammi, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)</code></pre>
+<p><code>out_mean_comparisons_ammi</code> is a list of three elements:</p>
+<ul>
+<li><code>info</code> : a list with variable and gxe_analysis</li>
+<li><code>data_ggplot_LSDbarplot_germplasm</code></li>
+<li><code>data_ggplot_LSDbarplot_location</code></li>
+<li><code>data_ggplot_LSDbarplot_year</code></li>
+</ul>
+</div>
+<div id="visualize-mean-comparisons-3" class="section level5">
+<h5><span class="header-section-number">3.6.3.6.2</span> Visualize mean comparisons</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_ammi =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_ammi)</code></pre>
+<p><code>p_out_mean_comparisons_ammi</code> is a list of three elements with barplots :</p>
+<p>For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> parameters per graph.
+Letters are displayed on each bar. Parameters that do not share the same letters are different regarding type I error (alpha) and alpha correction.
+The error I (alpha) and the alpha correction are displayed in the title.</p>
+<ul>
+<li><code>germplasm</code> : mean comparison for germplasm</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">pg =<span class="st"> </span>p_out_mean_comparisons_ammi<span class="op">$</span>germplasm
+<span class="kw">names</span>(pg)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pg<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<ul>
+<li><code>location</code> : mean comparison for location</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">pl =<span class="st"> </span>p_out_mean_comparisons_ammi<span class="op">$</span>location
+<span class="kw">names</span>(pl)</code></pre>
+<pre><code>## [1] &quot;1&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pl<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<ul>
+<li><code>year</code> : mean comparison for year
+Here there are no more than 2 years in the data set so it is <code>NULL</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_ammi<span class="op">$</span>year</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+</div>
+<div id="get-and-visualize-biplot" class="section level4">
+<h4><span class="header-section-number">3.6.3.7</span> Get and visualize biplot</h4>
+<p>The biplot represents information about the percentages of total variation explained by the two axes.
+It has to be linked to the total variation caught by the interaction.
+If the total variation is small, then the biplot is useless.
+If the total variation is high enought, then the biplot is useful if the two first dimension represented catch enought variation (the more the better).</p>
+<div id="get-biplot" class="section level5">
+<h5><span class="header-section-number">3.6.3.7.1</span> Get biplot</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out_biplot_ammi =<span class="st"> </span><span class="kw">biplot_data</span>(out_check_ammi)</code></pre>
+</div>
+<div id="visualize-biplot" class="section level5">
+<h5><span class="header-section-number">3.6.3.7.2</span> Visualize biplot</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi =<span class="st"> </span><span class="kw">plot</span>(out_biplot_ammi)</code></pre>
+<p><code>p_out_biplot_ammi</code> is a list of three elements :</p>
+<ul>
+<li><code>ecovalence</code></li>
+</ul>
+<p>Ecovalence from <span class="citation">Wricke (<a href="#ref-wricke_uber_1962">1962</a>)</span> give part of interaction variance taken by germplasm and location.
+This parameter provides indications on the contribution of each variety to the interaction term and therefore on its stability over the different farms with respect to the productivity potential of each of them.
+It is generally described as a dynamic stability indicator <span class="citation">(Becker and Leon <a href="#ref-becker_stability_1988">1988</a>)</span>.
+A low ecovalence means low interaction, i.e. more stability.</p>
+<p>Ecovalance of germplasm <span class="math inline">\(i\)</span> is <span class="math inline">\(W_{i}=\sum_{i}^{n} (\eta_{i}\nu_{j})^{2}\)</span></p>
+<p>Ecovalance of location <span class="math inline">\(j\)</span> is <span class="math inline">\(W_{j}=\sum_{j}^{n} (\eta_{i}\nu_{j})^{2}\)</span>.</p>
+<p>Ecovalances are represented in fonction of mean effects by germplasm and location.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>ecovalence</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
+<ul>
+<li><code>interaction</code> which displays the interaction matrix</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>interaction</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<ul>
+<li><code>biplot</code> being a list of four elements :</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>biplot<span class="op">$</span>simple_biplot</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p>Regarding the other elements of the list, it returns <code>NULL</code> as these visualisation is only done for <code>gxe_analysis = &quot;GGE&quot;</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>biplot<span class="op">$</span>which_won_where</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>biplot<span class="op">$</span>mean_vs_stability</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_ammi<span class="op">$</span>biplot<span class="op">$</span>discrimitiveness_vs_representativeness</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+</div>
+<div id="get-and-vizualise-groups-of-parameters-2" class="section level4">
+<h4><span class="header-section-number">3.6.3.8</span> Get and vizualise groups of parameters</h4>
+<div id="get-groups-of-parameters-2" class="section level5">
+<h5><span class="header-section-number">3.6.3.8.1</span> Get groups of parameters</h5>
+<p>In order to cluster locations or germplasms, you may use mulivariate analysis on a matrix with several variables in columns and parameter in rows.</p>
+<p>This is done with <code>parameter_groups()</code> which do a PCA on this matrix.</p>
+<p>Clusters are done based on HCPC method as explained <a href="http://www.sthda.com/english/wiki/hcpc-hierarchical-clustering-on-principal-components-hybrid-approach-2-2-unsupervised-machine-learning">here</a></p>
+<p>Lets’ have an example with three variables.</p>
+<p>First run the models</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi_<span class="dv">2</span> =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y2&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;AMMI&quot;</span>)</code></pre>
+<pre><code>## AMMI model done for y2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_ammi_<span class="dv">3</span> =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y3&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;AMMI&quot;</span>)</code></pre>
+<pre><code>## AMMI model done for y3</code></pre>
+<p>Then check the models</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_check_ammi_<span class="dv">2</span> =<span class="st"> </span><span class="kw">check_model</span>(out_ammi_<span class="dv">2</span>)
+out_check_ammi_<span class="dv">3</span> =<span class="st"> </span><span class="kw">check_model</span>(out_ammi_<span class="dv">3</span>)</code></pre>
+<p>Then run the function for germplasm. It can also be done on location or intra germplasm variance</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_parameter_groups =<span class="st"> </span><span class="kw">parameter_groups</span>(
+  <span class="kw">list</span>(<span class="st">&quot;y1&quot;</span> =<span class="st"> </span>out_check_ammi, <span class="st">&quot;y2&quot;</span> =<span class="st"> </span>out_check_ammi_<span class="dv">2</span>, <span class="st">&quot;y3&quot;</span> =<span class="st"> </span>out_check_ammi_<span class="dv">3</span>), 
+  <span class="st">&quot;germplasm&quot;</span>
+  )</code></pre>
+<p><code>out_parameter_groups</code> is list of two elements:</p>
+<ul>
+<li><code>obj.pca</code> : the PCA object from <code>FactoMineR::PCA()</code></li>
+<li><code>clust</code>, a list of two elements:
+<ul>
+<li><code>res.hcpc</code> : the HCPC object from <code>FactoMineR::HCPC()</code></li>
+<li><code>clust</code> : the dataframe with cluster assigned to each individual</li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-groups-of-parameters-2" class="section level5">
+<h5><span class="header-section-number">3.6.3.8.2</span> Visualize groups of parameters</h5>
+<p>Visualize outputs with <code>plot</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_germplasm_group =<span class="st"> </span><span class="kw">plot</span>(out_parameter_groups)</code></pre>
+<p><code>p_germplasm_group</code> is list of two elements :</p>
+<ul>
+<li><p><code>pca</code> : a list with three elements on the PCA on the group of parameters :</p>
+<ul>
+<li><code>composante_variance</code> : variance caught by each dimension of the PCA</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_germplasm_group<span class="op">$</span>pca<span class="op">$</span>composante_variance</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<ul>
+<li><code>ind</code> : graph of individuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_germplasm_group<span class="op">$</span>pca<span class="op">$</span>ind</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<ul>
+<li><code>var</code> : graph of variables</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_germplasm_group<span class="op">$</span>pca<span class="op">$</span>var</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p></li>
+<li><p><code>clust</code> : output from <code>factextra::fviz_cluster()</code>, a list of number of cluster + 1 element</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">cl =<span class="st"> </span>p_germplasm_group<span class="op">$</span>clust
+<span class="kw">names</span>(cl)</code></pre>
+<pre><code>## [1] &quot;cluster_all&quot; &quot;cluster_1&quot;   &quot;cluster_2&quot;   &quot;cluster_3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">cl<span class="op">$</span>cluster_all</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">cl<span class="op">$</span>cluster_<span class="dv">1</span></code></pre>
+<pre><code>## Warning: Removed 3 rows containing non-finite values (stat_mean).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_text_repel).</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+</div>
+</div>
+<div id="post-hoc-analysis-to-visualize-variation-repartition-for-several-variables-2" class="section level4">
+<h4><span class="header-section-number">3.6.3.9</span> post hoc analysis to visualize variation repartition for several variables</h4>
+<pre class="sourceCode r"><code class="sourceCode r">list_out_check_model =<span class="st"> </span><span class="kw">list</span>(out_check_ammi, out_check_ammi_<span class="dv">2</span>, out_check_ammi_<span class="dv">3</span>)
+<span class="kw">names</span>(list_out_check_model) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ammi_1&quot;</span>, <span class="st">&quot;ammi_2&quot;</span>, <span class="st">&quot;ammi_3&quot;</span>)
+<span class="kw">post_hoc_variation</span>(list_out_check_model)</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+</div>
+<div id="workflow_gxe" class="section level4">
+<h4><span class="header-section-number">3.6.3.10</span> Apply the workflow to several variables</h4>
+<p>If you wish to apply the AMMI workflow to several variables, you can use <code>lapply()</code> with the following code :</p>
+<pre class="sourceCode r"><code class="sourceCode r">workflow_gxe =<span class="st"> </span><span class="cf">function</span>(x, gxe){
+  out_gxe =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> x, <span class="dt">gxe_analysis =</span> gxe)
+  
+  out_check_gxe =<span class="st"> </span><span class="kw">check_model</span>(out_gxe)
+  p_out_check_gxe =<span class="st"> </span><span class="kw">plot</span>(out_check_gxe)
+  
+  out_mean_comparisons_gxe =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_gxe, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)
+  p_out_mean_comparisons_gxe =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_gxe)
+  
+  out_biplot_gxe =<span class="st"> </span><span class="kw">biplot_data</span>(out_check_gxe)
+  p_out_biplot_gxe =<span class="st"> </span><span class="kw">plot</span>(out_biplot_gxe)
+
+  out =<span class="st"> </span><span class="kw">list</span>(
+    <span class="st">&quot;out_gxe&quot;</span> =<span class="st"> </span>out_gxe,
+    <span class="st">&quot;out_check_gxe&quot;</span> =<span class="st"> </span>out_check_gxe,
+    <span class="st">&quot;p_out_check_gxe&quot;</span> =<span class="st"> </span>p_out_check_gxe,
+    <span class="st">&quot;out_mean_comparisons_gxe&quot;</span> =<span class="st"> </span>out_mean_comparisons_gxe,
+    <span class="st">&quot;p_out_mean_comparisons_gxe&quot;</span> =<span class="st"> </span>p_out_mean_comparisons_gxe,
+    <span class="st">&quot;out_biplot_gxe&quot;</span> =<span class="st"> </span>out_biplot_gxe,
+    <span class="st">&quot;p_out_biplot_gxe&quot;</span> =<span class="st"> </span>p_out_biplot_gxe
+  )
+  
+  <span class="kw">return</span>(out)
+}
+
+vec_variables =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>)
+
+out =<span class="st"> </span><span class="kw">lapply</span>(vec_variables, workflow_gxe, <span class="st">&quot;AMMI&quot;</span>)</code></pre>
+<pre><code>## AMMI model done for y1</code></pre>
+<pre><code>## AMMI model done for y2</code></pre>
+<pre><code>## AMMI model done for y3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(out) =<span class="st"> </span>vec_variables
+
+out_parameter_groups =<span class="st"> </span><span class="kw">parameter_groups</span>(
+  <span class="kw">list</span>(<span class="st">&quot;y1&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y1<span class="op">$</span>out_check_gxe, <span class="st">&quot;y2&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y2<span class="op">$</span>out_check_gxe, <span class="st">&quot;y3&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y3<span class="op">$</span>out_check_gxe), 
+  <span class="st">&quot;germplasm&quot;</span> )
+
+p_germplasm_group =<span class="st"> </span><span class="kw">plot</span>(out_parameter_groups)</code></pre>
+
+</div>
+</div>
+<div id="gge" class="section level3">
+<h3><span class="header-section-number">3.6.4</span> GGE (<strong>M6b</strong>)</h3>
+<div id="theory-of-the-model-4" class="section level4">
+<h4><span class="header-section-number">3.6.4.1</span> Theory of the model</h4>
+<p>The experimental design used is fully replicated (<strong>D1</strong>).
+The GGE model is the same as the AMMI model except that the PCA is done on a matrix centered on the locations: germplasm and interaction effects are merged<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> <span class="citation">(Gauch <a href="#ref-gauch_statistical_2006">2006</a>)</span><span class="citation">(Gauch, Piepho, and Annicchiarico <a href="#ref-gauch_statistical_2008">2008</a>)</span><span class="citation">(Yan et al. <a href="#ref-yan_gge_2007">2007</a>)</span>.
+The model is based on frequentist statistics (section <a href="intro-agro.html#section-freq">3.1.2.1</a>).</p>
+<p>The GGE model can be written as followed:</p>
+<p><span class="math inline">\(Y_{ijk} = \mu + \theta_{j} + rep_{k}(\theta_{j}) + \sum_{n}^{N} \lambda_{n} \gamma_{in} \omega_{jn} + \varepsilon_{ijk}; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>with,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijk}\)</span> the phenotypic value for replication <span class="math inline">\(k\)</span>, germplasm <span class="math inline">\(i\)</span> and location <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(\mu\)</span> the general mean,</li>
+<li><span class="math inline">\(\theta_{j}\)</span> the effect of location <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(rep_{k}(\theta_{j})\)</span> the effect of replication <span class="math inline">\(k\)</span> nested in location,</li>
+<li><span class="math inline">\(N\)</span> the number of dimension (PCA componant) which has as maximum value the number of location,</li>
+<li><span class="math inline">\(\lambda_{n}\)</span> the eigen value for componant <span class="math inline">\(n\)</span>,</li>
+<li><span class="math inline">\(\gamma_{in}\)</span> the eigen vector for germplasm <span class="math inline">\(i\)</span> for componant <span class="math inline">\(n\)</span>,</li>
+<li><span class="math inline">\(\omega_{jn}\)</span> the eigen vector for location <span class="math inline">\(j\)</span> for componant <span class="math inline">\(n\)</span>.</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> the residuals.</li>
+</ul>
+<p>or, if there is year effect:</p>
+<p><span class="math inline">\(Y_{ijkl} = \mu + \theta_{j} + rep_{k}(\theta_{j}\beta_{l}) +\sum_{n}^{N} \lambda_{n} \gamma_{in} \omega_{jn} + \beta_{l} + \beta_{l}\alpha_{i} + \beta_{l}\theta_{j} + \varepsilon_{ijk}; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijkl}\)</span> the phenotypic value for replication <span class="math inline">\(k\)</span>, germplasm <span class="math inline">\(i\)</span>, location <span class="math inline">\(j\)</span> and year <span class="math inline">\(l\)</span>,</li>
+<li><span class="math inline">\(\beta_{l}\)</span> the year <span class="math inline">\(l\)</span> effect,</li>
+<li><span class="math inline">\(\beta_{l}\alpha_{i}\)</span> the year <span class="math inline">\(\times\)</span> germplasm interaction effect,</li>
+<li><span class="math inline">\(\beta_{l}\theta_{j}\)</span> the year <span class="math inline">\(\times\)</span> location interaction effect,</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> the residuals,</li>
+<li>and all other effects are the same as in the previous model.</li>
+</ul>
+</div>
+<div id="steps-with-ppbstats-6" class="section level4">
+<h4><span class="header-section-number">3.6.4.2</span> Steps with <code>PPBstats</code></h4>
+<p>For GGE analysis, everything is exactly the same than for AMMI analysis except you should settle <code>gxe_analysis = &quot;GGE&quot;</code> in <code>model_GxE</code>.
+You can follow these steps (Figure <a href="intro-agro.html#fig:main-workflow">3.2</a>):</p>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_GxE()</code> and <code>gxe_analysis = &quot;GGE&quot;</code></li>
+<li>Check model outputs with graphs to know if you can continue the analysis with <code>check_model()</code></li>
+<li>Get mean comparisons for each factor with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+<li>Get and visualize biplot with <code>biplot_data()</code> and <code>plot()</code></li>
+<li>Get groups of each parameters with <code>parameters_groups()</code> and visualise it with <code>plot()</code></li>
+</ul>
+<p>We will not details everything as it the same than AMMI in the code.
+Of course the calculation is different on the interaction matrix so you’ll get different results.</p>
+<p>The workflow is therefore :</p>
+</div>
+<div id="format-the-data-8" class="section level4">
+<h4><span class="header-section-number">3.6.4.3</span> Format the data</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(data_model_GxE)
+data_model_GxE =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_GxE, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_model_GxE)</code></pre>
+<pre><code>##                  seed_lot location     long      lat year germplasm block
+## 1 germ-12_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-12     1
+## 2  germ-1_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-1     1
+## 3 germ-18_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-18     1
+## 4 germ-14_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-14     1
+## 5  germ-6_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-6     1
+## 6  germ-4_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-4     1
+##   X Y       y1    y1$date       y2    y2$date       y3    y3$date desease
+## 1 A 1 14.32724 2017-07-15 41.85377 2017-07-15 66.05498 2017-07-15     low
+## 2 A 2 23.03428 2017-07-15 37.38970 2017-07-15 63.39528 2017-07-15     low
+## 3 A 3 24.91349 2017-07-15 38.38628 2017-07-15 60.52710 2017-07-15    high
+## 4 A 4 24.99078 2017-07-15 39.72205 2017-07-15 60.80393 2017-07-15     low
+## 5 A 5 18.95340 2017-07-15 46.60443 2017-07-15 53.71210 2017-07-15    high
+## 6 B 1 21.31660 2017-07-15 49.94656 2017-07-15 60.71978 2017-07-15  medium
+##   vigor y1$date_julian y2$date_julian y3$date_julian
+## 1     l            195            195            195
+## 2     l            195            195            195
+## 3     h            195            195            195
+## 4     l            195            195            195
+## 5     m            195            195            195
+## 6     l            195            195            195</code></pre>
+</div>
+<div id="run-the-model-4" class="section level4">
+<h4><span class="header-section-number">3.6.4.4</span> Run the model</h4>
+<pre class="sourceCode r"><code class="sourceCode r">out_gge =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y1&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;GGE&quot;</span>)</code></pre>
+<pre><code>## GGE model done for y1</code></pre>
+</div>
+<div id="check-and-visualize-model-outputs-4" class="section level4">
+<h4><span class="header-section-number">3.6.4.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.</p>
+<div id="check-the-model-4" class="section level5">
+<h5><span class="header-section-number">3.6.4.5.1</span> Check the model</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out_check_gge =<span class="st"> </span><span class="kw">check_model</span>(out_gge)</code></pre>
+</div>
+<div id="visualize-outputs-4" class="section level5">
+<h5><span class="header-section-number">3.6.4.5.2</span> Visualize outputs</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_gge =<span class="st"> </span><span class="kw">plot</span>(out_check_gge)</code></pre>
+</div>
+</div>
+<div id="get-and-visualize-mean-comparisons-4" class="section level4">
+<h4><span class="header-section-number">3.6.4.6</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.</p>
+<div id="get-mean-comparisons-4" class="section level5">
+<h5><span class="header-section-number">3.6.4.6.1</span> Get mean comparisons</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out_mean_comparisons_gge =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_gge, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)</code></pre>
+</div>
+<div id="visualize-mean-comparisons-4" class="section level5">
+<h5><span class="header-section-number">3.6.4.6.2</span> Visualize mean comparisons</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_gge =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_gge)</code></pre>
+</div>
+</div>
+<div id="get-and-visualize-biplot-1" class="section level4">
+<h4><span class="header-section-number">3.6.4.7</span> Get and visualize biplot</h4>
+<div id="get-biplot-1" class="section level5">
+<h5><span class="header-section-number">3.6.4.7.1</span> Get biplot</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out_biplot_gge =<span class="st"> </span><span class="kw">biplot_data</span>(out_check_gge)</code></pre>
+</div>
+<div id="visualize-biplot-1" class="section level5">
+<h5><span class="header-section-number">3.6.4.7.2</span> Visualize biplot</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_biplot_gge =<span class="st"> </span><span class="kw">plot</span>(out_biplot_gge)</code></pre>
+<p>Compared to AMMI analysis, in the output of <code>p_out_biplot_gge</code>,
+<code>which_won_where</code>,
+<code>mean_vs_stability</code> and
+<code>discrimitiveness_vs_representativeness</code>
+are displayed.</p>
+<p>The description of these following graphs are greatly inspired from <span class="citation">Ceccarelli (<a href="#ref-ceccarelli_manual_2012">2012</a>)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">biplot =<span class="st"> </span>p_out_biplot_gge<span class="op">$</span>biplot</code></pre>
+<ul>
+<li>The which won where graph</li>
+</ul>
+<p>This graph allow to detect location where germplasm (and the interaction) behave better : ‘which won where’ <span class="citation">(Gauch, Piepho, and Annicchiarico <a href="#ref-gauch_statistical_2008">2008</a>,<span class="citation">@yan_gge_2007</span>)</span>.
+The germplasms which have the largest value in a sector “win” in the location present in that sector.
+The information is summarized in the legend of the plot.
+See <code>?plot.PPBstats</code> for more details on this plot.</p>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>which_won_where</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<ul>
+<li><p>The mean vs stability graph.</p>
+<ul>
+<li>mean
+A red circle define the average location.
+An high score mean a greater mean performance of an entry.
+Entries with a score above zero means entries with above-average means.
+Entries with a score below zero means entries with below-average means.
+Note that the distance from the biplot origin to the average location circle (represented with an arrow), is a measure of the relative importance of the germplasm main effect versus the entry by location interaction.
+The longer the arrow is, the more important is germplasm effect and the more meaningful is the selection based on mean performance.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>mean_vs_stability<span class="op">$</span>mean_performance</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<ul>
+<li>stability
+This information is related to the ecovalence graph.
+The score is equal to the length of the projection.
+A high score represents a low stability (i.e. an high entry by location interaction).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>mean_vs_stability<span class="op">$</span>stability_performance</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p></li>
+<li><p>The discrimitiveness vs representativeness graph.
+It is interessting to assess the ability of the locations to discriminate the germplasms and their ability to represent the target locations.</p></li>
+</ul>
+<p>The closer a given location is next to the averge location (represented by a red circle), the more desirable it is judged on both discrimination and representativeness.</p>
+<ul>
+<li>discrimitiveness
+The higher the value, the highest the discrimitiveness for locations.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>discrimitiveness_vs_representativeness<span class="op">$</span>discrimitiveness</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<ul>
+<li>representativeness
+The highest the value, the less representative the location.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>discrimitiveness_vs_representativeness<span class="op">$</span>representativeness</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<ul>
+<li>discrimitiveness vs representativeness
+The location combining better score (i. e.discrimination and representativeness) are the ones that could be used to test germplasms as they are more representative of all the locations.
+This has to be done severals year to get robust results.
+The highest the score, the more representative the location.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">biplot<span class="op">$</span>discrimitiveness_vs_representativeness<span class="op">$</span>discrimitiveness_vs_representativeness</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-vizualise-groups-of-parameters-3" class="section level4">
+<h4><span class="header-section-number">3.6.4.8</span> Get and vizualise groups of parameters</h4>
+<div id="get-groups-of-parameters-3" class="section level5">
+<h5><span class="header-section-number">3.6.4.8.1</span> Get groups of parameters</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First run the models</span>
+gge_<span class="dv">2</span> =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y2&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;GGE&quot;</span>)</code></pre>
+<pre><code>## GGE model done for y2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">gge_<span class="dv">3</span> =<span class="st"> </span><span class="kw">model_GxE</span>(data_model_GxE, <span class="dt">variable =</span> <span class="st">&quot;y3&quot;</span>, <span class="dt">gxe_analysis =</span> <span class="st">&quot;GGE&quot;</span>)</code></pre>
+<pre><code>## GGE model done for y3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Then check the models</span>
+out_check_gge_<span class="dv">2</span> =<span class="st"> </span><span class="kw">check_model</span>(gge_<span class="dv">2</span>)
+out_check_gge_<span class="dv">3</span> =<span class="st"> </span><span class="kw">check_model</span>(gge_<span class="dv">3</span>)
+
+<span class="co"># Then run the function for germplasm. It can also be done on location or intra germplasm variance</span>
+out_parameter_groups =<span class="st"> </span><span class="kw">parameter_groups</span>(
+  <span class="kw">list</span>(<span class="st">&quot;y1&quot;</span> =<span class="st"> </span>out_check_gge, <span class="st">&quot;y2&quot;</span> =<span class="st"> </span>out_check_gge_<span class="dv">2</span>, <span class="st">&quot;y3&quot;</span> =<span class="st"> </span>out_check_gge_<span class="dv">3</span>), 
+  <span class="st">&quot;germplasm&quot;</span>
+  )</code></pre>
+</div>
+<div id="visualize-groups-of-parameters-3" class="section level5">
+<h5><span class="header-section-number">3.6.4.8.2</span> Visualize groups of parameters</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_germplasm_group =<span class="st"> </span><span class="kw">plot</span>(out_parameter_groups)</code></pre>
+</div>
+</div>
+<div id="apply-the-workflow-to-several-variables-3" class="section level4">
+<h4><span class="header-section-number">3.6.4.9</span> Apply the workflow to several variables</h4>
+<p>If you wish to apply the AMMI workflow to several variables, you can use the function <code>workflow_gxe()</code> presented in section @ref{workflow-gxe} with the following code :</p>
+<pre class="sourceCode r"><code class="sourceCode r">vec_variables =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>)
+
+out =<span class="st"> </span><span class="kw">lapply</span>(vec_variables, workflow_gxe, <span class="st">&quot;GGE&quot;</span>)</code></pre>
+<pre><code>## GGE model done for y1</code></pre>
+<pre><code>## GGE model done for y2</code></pre>
+<pre><code>## GGE model done for y3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(out) =<span class="st"> </span>vec_variables
+
+out_parameter_groups =<span class="st"> </span><span class="kw">parameter_groups</span>(
+  <span class="kw">list</span>(<span class="st">&quot;y1&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y1<span class="op">$</span>out_check_gxe, <span class="st">&quot;y2&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y2<span class="op">$</span>out_check_gxe, <span class="st">&quot;y3&quot;</span> =<span class="st"> </span>out<span class="op">$</span>y3<span class="op">$</span>out_check_gxe), 
+  <span class="st">&quot;germplasm&quot;</span> )
+
+p_germplasm_group =<span class="st"> </span><span class="kw">plot</span>(out_parameter_groups)</code></pre>
+
+</div>
+</div>
+<div id="model-2" class="section level3">
+<h3><span class="header-section-number">3.6.5</span> Hierarchical Bayesian <span class="math inline">\(G \times E\)</span> model to analyse <span class="math inline">\(G \times E\)</span> interaction in the network of farms (<strong>M7b</strong>)</h3>
+<p>At the <strong>network level</strong>, there is a large number of germplasm <span class="math inline">\(\times\)</span> environment combinations that are missing, leading to a poor estimation of germplasm, environment and interaction effects.
+Hence, model_bh_GxE should be implemented.</p>
+<p>For model_bh_GxE, it gives nice results with at least around 75 environments and 120 germplasms present in at least two environments (95% of missing <span class="math inline">\(G \times E\)</span> combinations) <span class="citation">(Rivière et al. <a href="#ref-riviere_hierarchical_2016">2016</a>)</span>.
+It is based on bayesian statistics (section <a href="intro-agro.html#section-bayes">3.1.2.2</a>).</p>
+<div id="theory-of-the-model-5" class="section level4">
+<h4><span class="header-section-number">3.6.5.1</span> Theory of the model</h4>
+<p>The experimental design used is satellite and regional farms (<strong>D4</strong>).</p>
+<p>The model is describe in <span class="citation">Rivière et al. (<a href="#ref-riviere_hierarchical_2016">2016</a>)</span>.</p>
+<p>The phenotypic value <span class="math inline">\(Y_{ij}\)</span> for a given variable <span class="math inline">\(Y\)</span>, germplasm <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, is modeled as :</p>
+<p><span class="math inline">\(Y_{ij} = \alpha_{i} + \theta_{j} + \eta_{i}\theta_{j} + \varepsilon_{ij} ; \quad \varepsilon_{ij} \sim \mathcal{N} (0,\sigma^2_{e})\)</span></p>
+<p>for <span class="math inline">\(i = 1,\ldots, I\)</span> and <span class="math inline">\(j = 1,\ldots, J\)</span>, where</p>
+<ul>
+<li><span class="math inline">\(I\)</span> is the number of germplasms,</li>
+<li><span class="math inline">\(J\)</span> is the number of environments,</li>
+<li><span class="math inline">\(\alpha_{i}\)</span> is the main effect of germplasm <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(\theta_{j}\)</span> is the main effect of environnment <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(\varepsilon_{ij}\)</span> is the residual and</li>
+<li><span class="math inline">\(\mathcal{N} (0,\sigma^2_{e})\)</span> is the normal distribution with mean 0 and variance <span class="math inline">\(\sigma^2_{e}\)</span>.
+The interaction between germplasm <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span> was divided into a multiplicative term <span class="math inline">\(\eta_{i}\theta_{j}\)</span> and a remaining term that contributed to the residual <span class="math inline">\(\varepsilon_{ij}\)</span>.</li>
+</ul>
+<p>This model is further written as :</p>
+<p><span class="math inline">\(Y_{ij} = \alpha_{i} + \beta_{i} \theta_{j} + \varepsilon_{ij}; \quad \varepsilon_{ij} \sim \mathcal{N} (0,\sigma_{\varepsilon})\)</span>,</p>
+<p>Where <span class="math inline">\(\beta_{i} = (1 + \eta_{i})\)</span> is the sensitivity of germplasm <span class="math inline">\(i\)</span> to environments.
+This model is known as the Finlay Wilkinson model or as joint regression <span class="citation">(Finlay and Wilkinson <a href="#ref-finlay_analysis_1963">1963</a>)</span>.
+Germplasms’ sensitivity quantifies the stability of germplasms’ performances over environments.
+The average sensitivity is equal to 1 so that a gemplasm with <span class="math inline">\(\beta_{i} &gt; 1\)</span> (<span class="math inline">\(\beta_{i} &lt; 1\)</span>) is more (less) sensitive to environments than a germplasm with the average sensitivity <span class="citation">(Nabugoomu, Kempton, and Talbot <a href="#ref-nabugoomu_analysis_1999">1999</a>)</span>.</p>
+<p>Given the high disequilibrium of the data and the large amount of data, this model is implemented with a hierarchical Bayesian approach.</p>
+<p>We use hierarchical priors for <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\beta_i\)</span> and <span class="math inline">\(\theta_j\)</span> and a vague prior for <span class="math inline">\(\sigma_{\varepsilon}\)</span>.</p>
+<p><span class="math inline">\(\alpha_{i} \sim \mathcal{N} (\mu,\sigma^2_{\alpha}), \quad \beta_{i} \sim \mathcal{N} (1,\sigma^2_{\beta}), \quad \theta_{j} \sim \mathcal{N} (0,\sigma^2_{\theta}), \quad \sigma^{-2}_{\varepsilon} \sim \mathcal{G}amma (10^{-6},10^{-6})\)</span>,</p>
+<p>where <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2_{\alpha}\)</span>, <span class="math inline">\(\sigma^2_{\beta}\)</span> and <span class="math inline">\(\sigma^2_{\theta}\)</span> are unknown parameters.
+The mean of <span class="math inline">\(\beta_i\)</span> is set to 1 <span class="citation">(Nabugoomu, Kempton, and Talbot <a href="#ref-nabugoomu_analysis_1999">1999</a>)</span>.</p>
+<p>Then, we place weakly-informative priors on the hyperparmeters <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2_{\alpha}\)</span>, <span class="math inline">\(\sigma^2_{\beta}\)</span> and <span class="math inline">\(\sigma^2_{\theta}\)</span>:</p>
+<p><span class="math inline">\(\mu \sim \mathcal{N} (\nu,\nu^2), \quad \sigma_{\alpha} \sim \mathcal{U}niforme (0,\nu), \quad \sigma_{\beta} \sim \mathcal{U}niforme (0,1), \quad \sigma_{\theta} \sim \mathcal{U}niforme (0,\nu)\)</span>,</p>
+<p>where <span class="math inline">\(\nu\)</span> is the arithmetic mean of the data : <span class="math inline">\(\nu = \sum_{ij} {Y_{ij}/n}\)</span> with <span class="math inline">\(n\)</span> the number of observations.
+Uniform priors are used for <span class="math inline">\(\sigma^2_{\alpha}\)</span>, <span class="math inline">\(\sigma^2_{\beta}\)</span> and <span class="math inline">\(\sigma^2_{\theta}\)</span> to reduce the influence of these priors on posterior results <span class="citation">(Gelman and Rubin <a href="#ref-gelman_inference_1992">1992</a>)</span>.
+The support of these priors take account of the prior knowledge that <span class="math inline">\(\sigma^2_{\alpha}\)</span>, <span class="math inline">\(\sigma^2_{\beta}\)</span> and <span class="math inline">\(\sigma^2_{\theta}\)</span> is expected to be respectively smaller than <span class="math inline">\(\nu\)</span>, 1 and <span class="math inline">\(\nu\)</span>.</p>
+<p>Initial values for each chain are taken randomly except for <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma_{\alpha}\)</span> and <span class="math inline">\(\sigma_{\theta}\)</span> whose initial values are equal to their posterior median from additive model (i.e. model  with <span class="math inline">\(\forall i, \beta_{i}=1\)</span>).</p>
+<p>The main parameter of interest are
+the germplasm main effects (<span class="math inline">\(\alpha_{i}, i = 1,\ldots, I\)</span>),
+the environment main effects (<span class="math inline">\(\theta_{j}, j = 1,\ldots, J\)</span>) and
+the germplasm sensitivities (<span class="math inline">\(\beta_{i}, i = 1,\ldots, I\)</span>).
+For <span class="math inline">\(\alpha_i\)</span>, the average posterior response of each germplasm over the environments of the network is calculated as:</p>
+<p><span class="math inline">\(\gamma_i = \alpha_i + \beta_{i} \bar{\theta}\)</span>,</p>
+<p>where</p>
+<p><span class="math inline">\(\bar{\theta} = \sum_{}^{J} \theta_j/J\)</span>.</p>
+<p>To simplify, the <span class="math inline">\(\alpha_i\)</span> notation is kept instead of <span class="math inline">\(\gamma_i\)</span> (i.e. <span class="math inline">\(\alpha_i = \gamma_i\)</span>).
+But keep in mind it has been corrected.</p>
+</div>
+<div id="steps-with-ppbstats-7" class="section level4">
+<h4><span class="header-section-number">3.6.5.2</span> Steps with <code>PPBstats</code></h4>
+<p>For model_bh_GxE, you can follow these steps (Figure <a href="intro-agro.html#fig:main-workflow">3.2</a>):</p>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_bh_GxE()</code></li>
+<li>Check model outputs with graphs to know if you can continue the analysis with <code>check_model()</code></li>
+<li>Perform cross validation studies with <code>cross_validation_model_bh_GxE()</code> in order to assess the quality of the model</li>
+<li>Get mean comparisons for each factor with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+<li>Get groups of parameters for <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\theta\)</span> with <code>parameters_groups()</code> and visualise it with <code>plot()</code></li>
+<li>Predict the past with <code>predict_the_past_model_bh_GxE()</code> and vizualise it with <code>plot()</code></li>
+</ul>
+</div>
+<div id="format-the-data-9" class="section level4">
+<h4><span class="header-section-number">3.6.5.3</span> Format the data</h4>
+<p>The values for <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\beta_i\)</span>, <span class="math inline">\(\theta_j\)</span> are the real value taken to create the dataset for y1.
+This dataset is representative of data you can get in a PPB programme.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(data_model_bh_GxE)
+data_model_bh_GxE =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_bh_GxE, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;long&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;lat&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_model_bh_GxE)</code></pre>
+<pre><code>##                  seed_lot location year germplasm block X Y        y1
+## 1 germ-1_loc-23_2005_0001   loc-23 2005    germ-1     1 1 1  7.926204
+## 2 germ-1_loc-36_2005_0001   loc-36 2005    germ-1     1 2 2  9.772076
+## 3 germ-1_loc-10_2009_0001   loc-10 2009    germ-1     1 3 3  9.199745
+## 4 germ-1_loc-21_2009_0001   loc-21 2009    germ-1     1 4 4 10.131745
+## 5 germ-1_loc-32_2007_0001   loc-32 2007    germ-1     1 5 5 14.329280
+## 6 germ-1_loc-22_2005_0001   loc-22 2005    germ-1     1 6 6  8.709140
+##      y1$date alpha_i-1 beta_i-1  theta_j-1       y2    y2$date       y3
+## 1 2017-07-29  10.25349 2.170004 -0.7776704 18.28223 2017-07-15 31.57931
+## 2 2017-07-10  10.25349 2.170004 -0.7531355 18.41129 2017-07-22 31.44957
+## 3 2017-07-15  10.25349 2.170004  0.1163468 18.94209 2017-07-21 33.19169
+## 4 2017-07-02  10.25349 2.170004  0.2755013 24.86338 2017-07-06 29.34573
+## 5 2017-07-06  10.25349 2.170004  1.8495949 16.09421 2017-07-15 32.36811
+## 6 2017-07-21  10.25349 2.170004 -0.5750281 17.93222 2017-07-29 37.85269
+##      y3$date y1$date_julian y2$date_julian y3$date_julian
+## 1 2017-07-21            209            195            201
+## 2 2017-07-29            190            202            209
+## 3 2017-07-15            195            201            195
+## 4 2017-07-10            182            186            190
+## 5 2017-07-06            186            195            186
+## 6 2017-07-29            201            209            209</code></pre>
+</div>
+<div id="run-the-model-5" class="section level4">
+<h4><span class="header-section-number">3.6.5.4</span> Run the model</h4>
+<p>To run model_bh_GxE on the dataset, use the function <code>model_bh_GxE()</code>.
+You can run it on one variable.
+Here it is on thousand kernel weight (tkw)</p>
+<p>By default, <code>model_bh_GxE</code> returns posteriors for
+<span class="math inline">\(\alpha_i\)</span> (<code>return.alpha = TRUE</code>),
+<span class="math inline">\(\sigma_{\alpha}\)</span> (<code>return.sigma_alpha = TRUE</code>),
+<span class="math inline">\(\beta_i\)</span> (<code>return.beta = TRUE</code>),
+<span class="math inline">\(\sigma_{\beta}\)</span> (<code>return.sigma_beta = TRUE</code>),
+<span class="math inline">\(\theta_j\)</span> (<code>return.theta = TRUE</code>),
+<span class="math inline">\(\sigma_{\theta}\)</span> (<code>return.sigma_theta = TRUE</code>) and
+<span class="math inline">\(\sigma_{\epsilon}\)</span> (<code>return.sigma_epsilon = TRUE</code>).
+You can also get <span class="math inline">\(\epsilon_{ij}\)</span> with <code>return.epsilon = TRUE</code>.</p>
+<p>By default, DIC is not display, you may want this value to compare to other model (<code>DIC = TRUE</code>).
+DIC criterion is a generalization of the AIC criterion that can be used for hierarchical models <span class="citation">(Spiegelhalter et al. <a href="#ref-spiegelhalter_bayesian_2002">2002</a>)</span>.
+The smaller the DIC value, the better the model <span class="citation">(Plummer <a href="#ref-plummer_penalized_2008">2008</a>)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_model_bh_GxE = model_bh_GxE(data = data_model_bh_GxE, variable = &quot;y1&quot;, return.epsilon = TRUE)</span>
+
+<span class="co"># Run additive model ...</span>
+<span class="co"># Compiling model graph</span>
+<span class="co"># Resolving undeclared variables</span>
+<span class="co"># Allocating nodes</span>
+<span class="co"># Graph information:</span>
+<span class="co">#   Observed stochastic nodes: 2379</span>
+<span class="co"># Unobserved stochastic nodes: 228</span>
+<span class="co"># Total graph size: 9834</span>
+<span class="co"># </span>
+<span class="co"># Initializing model</span>
+<span class="co"># </span>
+<span class="co"># |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># Run FWH model ...</span>
+<span class="co"># Compiling model graph</span>
+<span class="co"># Resolving undeclared variables</span>
+<span class="co"># Allocating nodes</span>
+<span class="co"># Graph information:</span>
+<span class="co">#   Observed stochastic nodes: 2379</span>
+<span class="co"># Unobserved stochastic nodes: 386</span>
+<span class="co"># Total graph size: 14913</span>
+<span class="co"># </span>
+<span class="co"># Initializing model</span>
+<span class="co"># </span>
+<span class="co"># |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># </span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_GxE.RData&quot;</span>)</code></pre>
+<p>It may be useful to see which germplasm were not use in the analysis because they were in only one environment.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_GxE<span class="op">$</span>germplasm.not.used</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+<div id="check-and-visualize-model-outputs-5" class="section level4">
+<h4><span class="header-section-number">3.6.5.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-bayes">3.1.2.2.2</a>.</p>
+<div id="check-the-model-5" class="section level5">
+<h5><span class="header-section-number">3.6.5.5.1</span> Check the model</h5>
+<p>Once the model is run, it is necessary to check if the outputs can be taken with confidence.
+This step is needed before going ahead in the analysis (in fact, the MCMC object used in the next functions must come from <code>check_model()</code>!).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_check_model_bh_GxE = check_model(out_model_bh_GxE)</span>
+
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC for each parameter converge thanks to the Gelman-Rubin test.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_check_model_bh_GxE.RData&quot;</span>)</code></pre>
+<p><code>out_check_model_bh_GxE</code> is a list containing three elements:</p>
+<ul>
+<li><code>MCMC</code> : a data fame resulting from the concatenation of the two MCMC for each parameter. This object can be used for further analysis. There are as many columns than parameters and as many rows than iterations/thin (the thin value is 10 by default in the models).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(out_check_model_bh_GxE<span class="op">$</span>MCMC)</code></pre>
+<pre><code>## [1] 20000   385</code></pre>
+<ul>
+<li><p><code>MCMC_conv_not_ok</code> : a data fame resulting from the concatenation of the two MCMC for each parameter for environment where some parameters did not converge for mu and beta</p></li>
+<li><p><code>model2.presence.absence.matrix</code> : a matrix germplasm x environment with the number of occurence in the data used for the model (i.e. with at least two germplasm by environments.)</p></li>
+<li><code>data_ggplot</code> a list containing information for ggplot:
+<ul>
+<li><code>alpha</code></li>
+<li><code>beta</code></li>
+<li><code>theta</code></li>
+<li><code>epsilon</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-outputs-5" class="section level5">
+<h5><span class="header-section-number">3.6.5.5.2</span> Visualize outputs</h5>
+<p>Once the computation is done, you can visualize the results with <code>plot</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_GxE =<span class="st"> </span><span class="kw">plot</span>(out_check_model_bh_GxE)</code></pre>
+<pre><code>## The beta_i posterior distributions are done.</code></pre>
+<pre><code>## The theta_j posterior distributions are done.</code></pre>
+<pre><code>## The standardised residuals distributions are done.</code></pre>
+<p><code>p_out_check_model_bh_GxE</code> is a list with 4 elements:</p>
+<ul>
+<li><code>alpha_i</code> : distribution of each alpha_i. There are as many graph as needed with <code>nb_parameters_per_plot</code> <code>alpha_i</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_a =<span class="st"> </span>p_out_check_model_bh_GxE<span class="op">$</span>alpha_i
+<span class="kw">names</span>(p_a)</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_a<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<ul>
+<li><code>beta_i</code> : distribution of each beta_i. There are as many graph as needed with <code>nb_parameters_per_plot</code> <code>beta_i</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_a =<span class="st"> </span>p_out_check_model_bh_GxE<span class="op">$</span>beta_i
+<span class="kw">names</span>(p_a)</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_a<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<ul>
+<li><code>theta_j</code> : distribution of each theta_j. There are as many graph as needed with <code>nb_parameters_per_plot</code> <code>theta_j</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_a =<span class="st"> </span>p_out_check_model_bh_GxE<span class="op">$</span>theta_j
+<span class="kw">names</span>(p_a)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_a<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<ul>
+<li><code>epsilon_ij</code> : standardised residuals distribution.
+If the model went well it should be between -2 and 2.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_GxE<span class="op">$</span>epsilon_ij</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<ul>
+<li><code>mcmc_not_converge_traceplot_density</code> : a list with the plots of trace and density to check the convergence of the two MCMC only for chains that are not converging thanks to the Gelman-Rubin test.
+If all the chains converge, it is NULL</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_GxE<span class="op">$</span>mcmc_not_converge_traceplot_density</code></pre>
+<pre><code>## NULL</code></pre>
+<p>Just for fun, you compare the posterior medians and the arithmetic means for the <span class="math inline">\(\alpha_i\)</span>’s.</p>
+<pre class="sourceCode r"><code class="sourceCode r">MCMC =<span class="st"> </span>out_check_model_bh_GxE<span class="op">$</span>MCMC
+effects =<span class="st"> </span><span class="kw">apply</span>(MCMC, <span class="dv">2</span>, median)
+alpha_i_estimated =<span class="st"> </span>effects[<span class="kw">grep</span>(<span class="st">&quot;alpha</span><span class="ch">\\</span><span class="st">[&quot;</span>,<span class="kw">names</span>(effects))]
+<span class="kw">names</span>(alpha_i_estimated) =<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(alpha_i_estimated), <span class="cf">function</span>(x){  
+<span class="kw">sub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">]&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">sub</span>(<span class="st">&quot;alpha</span><span class="ch">\\</span><span class="st">[&quot;</span>, <span class="st">&quot;&quot;</span>, x)) } )
+ 
+alpha_i =<span class="st"> </span><span class="kw">tapply</span>(data_model_bh_GxE<span class="op">$</span>alpha_i, data_model_bh_GxE<span class="op">$</span>germplasm, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+ 
+check_data =<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="dt">alpha_i =</span> alpha_i, <span class="dt">alpha_i_estimated =</span> alpha_i_estimated[<span class="kw">names</span>(alpha_i)])</code></pre>
+<p>Let’s have a look at the relation between both values.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">ggplot</span>(check_data, <span class="kw">aes</span>(<span class="dt">x =</span> alpha_i, <span class="dt">y =</span> alpha_i_estimated))
+p <span class="op">+</span><span class="st"> </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+</div>
+</div>
+<div id="perform-cross-validation-studies" class="section level4">
+<h4><span class="header-section-number">3.6.5.6</span> Perform cross validation studies</h4>
+<p>This step is useful to assess the quality of the model.
+This step is higly computing consuming as model_bh_GxE is run as many time as there is value of <span class="math inline">\(Y_{ij}\)</span> (i.e. number of rows of the data set).</p>
+<p>The complete cross validation is done with <code>cross_validation_model_bh_GxE()</code>:
+each Value of <span class="math inline">\(Y_{ij}\)</span> is estimated by the entire data set without this value.</p>
+<p>The convergence is not check for each validation.
+If the parameters in the FWH converge, then it is assumed that the FWH in the cross validation converge as well.</p>
+<p>The model is run on dataset where germplasms are in three environments at least so the smallest data set where the cross valisation is run has germplasms present in two environments at least.</p>
+<p>You may parallelise to gain time with the <code>mc.cores</code> argument of the function.</p>
+<p>The number of iterations is set to 100 000 but you can change it with the <code>nb_iterations</code> argument.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_cross_validation_model_bh_GxE = cross_validation_model_bh_GxE(data_model_bh_GxE, &quot;y1&quot;)</span>
+<span class="co"># Note that it takes lots of time to run !!!</span>
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_cross_validation_model_bh_GxE.RData&quot;</span>) <span class="co"># to save lots of time</span>
+
+<span class="kw">head</span>(out_cross_validation_model_bh_GxE)</code></pre>
+<pre><code>##   observed.value estimated.value
+## 1       9.255871        8.439743
+## 2      11.730423        7.420068
+## 3       8.366394       10.902201
+## 4       9.897532        9.721544
+## 5      10.185193        9.643359
+## 6       9.373700        9.144640</code></pre>
+<p>The outputs are visualized with <code>plot</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_cv =<span class="st"> </span><span class="kw">plot</span>(out_cross_validation_model_bh_GxE)</code></pre>
+<p><code>p_out_cv</code> is a list of two elements:</p>
+<ul>
+<li><code>plot</code> : plot estimated.value = f(observed.value).
+The probability mean = 0 is display.</li>
+</ul>
+<p>The percentage of confidence is calculated with a t-test:</p>
+<p><span class="math inline">\(t = \frac{m - 0}{s/\sqrt{N}}\)</span></p>
+<p>with,</p>
+<p><span class="math inline">\(N\)</span> the number of observations in the data set,</p>
+<p><span class="math inline">\(m = \frac{1}{N} \sum\limits_{n=1}^N Y_{n} - \hat{Y_{n}}\)</span>, the average bias</p>
+<p><span class="math inline">\(s = \sqrt{\frac{1}{N-1} \sum\limits_{n=1}^N (Y_{n} - \hat{Y_{n}})^2}\)</span>, the standard deviation of the bias</p>
+<p><span class="math inline">\(t\)</span> follows a Student distribution with <span class="math inline">\(N-1\)</span> degree of freedom.</p>
+<p>The percentage of confidence (i.e. the probability <span class="math inline">\(H0\)</span>: the bias is equal to zero) comes from this distribution.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_cv<span class="op">$</span>plot</code></pre>
+<pre><code>## Warning: Removed 1 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<ul>
+<li><code>regression</code> : output of the model observed.value = a x estimated.value + b</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_cv<span class="op">$</span>regression</code></pre>
+<pre><code>## 
+## Call:
+## stats::lm(formula = observed.value ~ estimated.value, data = x)
+## 
+## Coefficients:
+##     (Intercept)  estimated.value  
+##          6.8258           0.3313</code></pre>
+</div>
+<div id="get-and-visualize-mean-comparisons-5" class="section level4">
+<h4><span class="header-section-number">3.6.5.7</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="#mean-comp-check-bayes"><strong>??</strong></a>.</p>
+<div id="get-mean-comparisons-5" class="section level5">
+<h5><span class="header-section-number">3.6.5.7.1</span> Get mean comparisons</h5>
+<p>For mean comparisons of parameters, it is the same method that presented in Section @ref{mean-comp}.
+It can be done for <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\beta_i\)</span> and <span class="math inline">\(\theta_j\)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># model_bh_GxE_alpha = mean_comparisons(out_check_model_bh_GxE, parameter = &quot;alpha&quot;)</span>
+<span class="co"># model_bh_GxE_beta = mean_comparisons(out_check_model_bh_GxE, parameter = &quot;beta&quot;, precision = 0.05)</span>
+<span class="co"># model_bh_GxE_theta = mean_comparisons(out_check_model_bh_GxE, parameter = &quot;theta&quot;, precision = 0.05)</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/model_bh_GxE_alpha.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/model_bh_GxE_beta.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/model_bh_GxE_theta.RData&quot;</span>)</code></pre>
+</div>
+<div id="vizualise-mean-comparisons" class="section level5">
+<h5><span class="header-section-number">3.6.5.7.2</span> Vizualise mean comparisons</h5>
+<p>To see the output, use <code>plot</code>.</p>
+<p>There are as many graph as needed with <code>nb_parameters_per_plot</code> parameters per graph.</p>
+<p>For <code>plot_type = &quot;barplot&quot;</code>,
+Letters are displayed on each bar. Parameters that do not share the same letters are different regarding type I error (alpha) and alpha correction.
+The error I (alpha) and the alpha correction are displayed in the title.
+alpha = Imp means that no differences were possible to find.</p>
+<p>For <code>plot_type = &quot;biplot-alpha-beta&quot;</code>, the biplot with <span class="math inline">\(\alpha_i\)</span> on the x axis and <span class="math inline">\(\beta_i\)</span> on the y axis.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_a =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_alpha, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+<span class="kw">names</span>(p_a<span class="op">$</span>alpha)</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_a<span class="op">$</span>alpha<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_b =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_beta, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+<span class="kw">names</span>(p_b<span class="op">$</span>beta)</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_b<span class="op">$</span>beta<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p>It is interessting to compare genetic effect versus sensibility to interaction.
+A germplasm with an high genetic effect and a low sensitivity to interaction (i.e. close to 0) may be a good candidate to sown.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_ab =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_alpha, model_bh_GxE_beta, <span class="dt">plot_type =</span> <span class="st">&quot;biplot-alpha-beta&quot;</span>)
+p_ab<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_t =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_theta, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+<span class="kw">names</span>(p_t<span class="op">$</span>theta)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_t<span class="op">$</span>theta<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-vizualise-groups-of-parameters-4" class="section level4">
+<h4><span class="header-section-number">3.6.5.8</span> Get and vizualise groups of parameters</h4>
+<div id="get-groups-of-parameters-4" class="section level5">
+<h5><span class="header-section-number">3.6.5.8.1</span> Get groups of parameters</h5>
+<p>In order to cluster environments or germplasms, you may use mulivariate analysis on a matrix with several variables in columns and parameter in rows.</p>
+<p>This is done with <code>parameter_groups</code> which do a PCA on this matrix.</p>
+<p>Clusters are done based on HCPC method as explained here <a href="http://www.sthda.com/english/wiki/hcpc-hierarchical-clustering-on-principal-components-hybrid-approach-2-2-unsupervised-machine-learning" class="uri">http://www.sthda.com/english/wiki/hcpc-hierarchical-clustering-on-principal-components-hybrid-approach-2-2-unsupervised-machine-learning</a></p>
+<p>Lets’ have an example with three variables.</p>
+<p>First run the models</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_model_bh_GxE_y1 = model_bh_GxE(data_model_bh_GxE, variable = &quot;y1&quot;)</span>
+<span class="co"># out_model_bh_GxE_y2 = model_bh_GxE(data_model_bh_GxE, variable = &quot;y2&quot;)</span>
+<span class="co"># out_model_bh_GxE_y3 = model_bh_GxE(data_model_bh_GxE, variable = &quot;y3&quot;)</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_GxE_y1.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_GxE_y2.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_GxE_y3.RData&quot;</span>)</code></pre>
+<p>Then check the models</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c_mbhgxe_y1 = check_model(out_model_bh_GxE_y1)</span>
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC for each parameter converge thanks to the Gelman-Rubin test.</span>
+
+<span class="co"># c_mbhgxe_y2 = check_model(out_model_bh_GxE_y2)</span>
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC for each parameter converge thanks to the Gelman-Rubin test.</span>
+
+<span class="co"># c_mbhgxe_y3 = check_model(out_model_bh_GxE_y3)</span>
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC for each parameter converge thanks to the Gelman-Rubin test.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/c_mbhgxe_y1.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/c_mbhgxe_y2.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/c_mbhgxe_y3.RData&quot;</span>)</code></pre>
+<p>Then run the function on alpha.
+It can also be done on beta or theta.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_parameter_groups =<span class="st"> </span><span class="kw">parameter_groups</span>(
+  <span class="kw">list</span>(<span class="st">&quot;y1&quot;</span> =<span class="st"> </span>c_mbhgxe_y1, <span class="st">&quot;y2&quot;</span> =<span class="st"> </span>c_mbhgxe_y2, <span class="st">&quot;y3&quot;</span> =<span class="st"> </span>c_mbhgxe_y3), 
+  <span class="st">&quot;alpha&quot;</span>
+  )</code></pre>
+<p>Note that you can highlight some individual with the argument <code>ind_to_highlight</code>.</p>
+<p><code>out_parameter_groups</code> is list of two elements:</p>
+<p>-<code>obj.pca</code> : the PCA object from <code>FactoMineR::PCA</code></p>
+<ul>
+<li><code>clust</code>, a list of two elements:
+<ul>
+<li><code>res.hcpc</code> : the HCPC object from <code>FactoMineR::HCPC</code></li>
+<li><code>clust</code> : the dataframe with cluster assigned to each individual</li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-groups-of-parameters-4" class="section level5">
+<h5><span class="header-section-number">3.6.5.8.2</span> Visualize groups of parameters</h5>
+<p>Visualize outputs with <code>plot</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">ppg =<span class="st"> </span><span class="kw">plot</span>(out_parameter_groups)</code></pre>
+<p><code>ppg</code> is list of two elements:</p>
+<ul>
+<li><code>pca</code> : a list with three elements on the PCA on the group of parameters :
+<ul>
+<li><code>composante_variance</code> : variance caught by each dimension of the PCA</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">ppg<span class="op">$</span>pca<span class="op">$</span>composante_variance</code></pre>
+<img src="PPBstats_book_files/figure-html/unnamed-chunk-264-1.png" width="672" />
+<ul>
+<li><code>ind</code> : graph of individuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">ppg<span class="op">$</span>pca<span class="op">$</span>ind</code></pre>
+<img src="PPBstats_book_files/figure-html/unnamed-chunk-265-1.png" width="672" />
+<ul>
+<li><code>var</code> : graph of variables</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">ppg<span class="op">$</span>pca<span class="op">$</span>var</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p></li>
+<li><p><code>clust</code> : output from <code>factextra::fviz_cluster()</code>, a list of number of cluster + 1 element</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">cl =<span class="st"> </span>ppg<span class="op">$</span>clust
+<span class="kw">names</span>(cl)</code></pre>
+<pre><code>## [1] &quot;cluster_all&quot; &quot;cluster_1&quot;   &quot;cluster_2&quot;   &quot;cluster_3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">cl<span class="op">$</span>cluster_all</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">cl<span class="op">$</span>cluster_<span class="dv">1</span></code></pre>
+<pre><code>## Warning: Removed 3 rows containing non-finite values (stat_mean).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_text_repel).</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
+<p>A farmer may find a germplasm that behaves well according to informations from model_1 (Section <a href="family-1.html#model-1">3.5.6</a>) in a farm that shares its cluster.</p>
+</div>
+</div>
+<div id="predict-the-past" class="section level4">
+<h4><span class="header-section-number">3.6.5.9</span> Predict the past</h4>
+<p>In order to choose a new germplasm to test on his farm, a farmer may choose a germplasm according to the value it would have obtained on his farm.</p>
+<p>For example for <code>&quot;loc-6:year-5&quot;</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">ptp =<span class="st"> </span><span class="kw">predict_the_past_model_bh_GxE</span>(out_check_model_bh_GxE, <span class="dt">env =</span> <span class="st">&quot;loc-1:2005&quot;</span>)</code></pre>
+<p><code>ptp</code> can be handle exacly as <code>out_model_1</code> for mean comparisons</p>
+<pre class="sourceCode r"><code class="sourceCode r">m_ptp =<span class="st"> </span><span class="kw">mean_comparisons</span>(ptp)</code></pre>
+<p>and visualize the output, for <code>plot_type = &quot;barplot&quot;</code>, there is two colors regarding estimated and predicted results.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">plot</span>(m_ptp, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+p<span class="op">$</span>data_mean_comparisons<span class="op">$</span><span class="st">`</span><span class="dt">loc-1:2005</span><span class="st">`</span><span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p>For <code>plot_type = &quot;score&quot;</code> and <code>plot_type = &quot;interaction&quot;</code>, predicted and estimated are mention between brakets after germplasm name.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">plot</span>(m_ptp, <span class="dt">plot_type =</span> <span class="st">&quot;score&quot;</span>)
+p<span class="op">$</span><span class="st">`</span><span class="dt">loc-1</span><span class="st">`</span><span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">plot</span>(m_ptp, <span class="dt">plot_type =</span> <span class="st">&quot;interaction&quot;</span>)
+p<span class="op">$</span>data_mean_comparisons<span class="op">$</span><span class="st">`</span><span class="dt">loc-1</span><span class="st">`</span><span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<pre><code>## geom_path: Each group consists of only one observation. Do you need to
+## adjust the group aesthetic?</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-273-2.png" width="672" /></p>
+</div>
+<div id="apply-the-workflow-to-several-variables-4" class="section level4">
+<h4><span class="header-section-number">3.6.5.10</span> Apply the workflow to several variables</h4>
+<p>If you wish to apply the model_2 workflow to several variables, you can use <code>lapply</code> with the following code :</p>
+<pre class="sourceCode r"><code class="sourceCode r">workflow_model_bh_GxE =<span class="st"> </span><span class="cf">function</span>(x){
+  out_model_bh_GxE =<span class="st"> </span><span class="kw">model_bh_GxE</span>(<span class="dt">data =</span> data_model_bh_GxE, <span class="dt">variable =</span> x, <span class="dt">return.epsilon =</span> <span class="ot">TRUE</span>)
+  
+  out_check_model_bh_GxE =<span class="st"> </span><span class="kw">check_model</span>(out_model_bh_GxE)
+  p_out_check_model_bh_GxE =<span class="st"> </span><span class="kw">plot</span>(out_check_model_bh_GxE)
+  
+  out_cross_validation_model_bh_GxE =<span class="st"> </span><span class="kw">cross_validation_model_bh_GxE</span>(data_model_bh_GxE, x, <span class="dt">nb_iterations =</span> <span class="dv">10</span>)
+  p_out_cv =<span class="st"> </span><span class="kw">plot</span>(out_cross_validation_model_bh_GxE)
+  
+  model_bh_GxE_alpha =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_model_bh_GxE, <span class="dt">parameter =</span> <span class="st">&quot;alpha&quot;</span>)
+  model_bh_GxE_beta =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_model_bh_GxE, <span class="dt">parameter =</span> <span class="st">&quot;beta&quot;</span>, <span class="dt">precision =</span> <span class="fl">0.05</span>)
+  model_bh_GxE_theta =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_model_bh_GxE, <span class="dt">parameter =</span> <span class="st">&quot;theta&quot;</span>, <span class="dt">precision =</span> <span class="fl">0.05</span>)
+  p_a =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_alpha, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+  p_b =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_beta, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+  p_ab =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_alpha, model_bh_GxE_beta, <span class="dt">plot_type =</span> <span class="st">&quot;biplot-alpha-beta&quot;</span>)
+  p_t =<span class="st"> </span><span class="kw">plot</span>(model_bh_GxE_theta, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+  
+  out =<span class="st"> </span><span class="kw">list</span>(
+      <span class="dt">out_model_bh_GxE =</span> out_model_bh_GxE,
+      <span class="dt">out_check_model_bh_GxE =</span> out_check_model_bh_GxE,
+      <span class="dt">p_out_check_model_bh_GxE =</span> p_out_check_model_bh_GxE,
+      <span class="dt">out_cross_validation_model_bh_GxE =</span> out_cross_validation_model_bh_GxE,
+      <span class="dt">p_out_cv =</span> p_out_cv,
+      <span class="dt">model_bh_GxE_alpha =</span> model_bh_GxE_alpha,
+      <span class="dt">model_bh_GxE_beta =</span> model_bh_GxE_beta,
+      <span class="dt">model_bh_GxE_theta =</span> model_bh_GxE_theta,
+      <span class="dt">p_a =</span> p_a,
+      <span class="dt">p_b =</span> p_b,
+      <span class="dt">p_ab =</span> p_ab,
+      <span class="dt">p_t =</span> p_t
+      )
+  <span class="kw">return</span>(out)
+}
+
+<span class="co">## Not run because of memory and time issues !</span>
+<span class="co"># vec_variables = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;)</span>
+<span class="co">#</span>
+<span class="co"># out = lapply(vec_variables, workflow_model_bh_GxE)</span>
+<span class="co"># names(out) = vec_variables</span>
+<span class="co">#</span>
+<span class="co"># out_parameter_groups = parameter_groups(</span>
+<span class="co">#   list(&quot;y1&quot; = out$y1$out_check_model_bh_GxE, </span>
+<span class="co">#        &quot;y2&quot; = out$y2$out_check_model_bh_GxE, &quot;</span>
+<span class="co">#        y3&quot; = out$y3$out_check_model_bh_GxE), </span>
+<span class="co">#   &quot;germplasm&quot; )</span>
+<span class="co">#</span>
+<span class="co"># ppg = plot(out_parameter_groups)</span>
+<span class="co">#</span>
+<span class="co"># predict the past is not done here as it is more specific question</span>
+<span class="co">#</span></code></pre>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-becker_stability_1988">
+<p>Becker, H.C., and J. Leon. 1988. “Stability Analysis in Plant-Breeding.” <em>Plant Breeding</em> 101 (1): 1–23. <a href="https://doi.org/10.1111/j.1439-0523.1988.tb00261.x">https://doi.org/10.1111/j.1439-0523.1988.tb00261.x</a>.</p>
+</div>
+<div id="ref-ceccarelli_manual_2012">
+<p>Ceccarelli, S. 2012. “Plant Breeding with Farmers – a Technical Manual.” ICARDA.</p>
+</div>
+<div id="ref-finlay_analysis_1963">
+<p>Finlay, K.W., and G.N. Wilkinson. 1963. “The Analysis of Adaptation in a Plant-Breeding Programme.” <em>Australian Journal of Agricultural Research</em> 14 (6): 742–54.</p>
+</div>
+<div id="ref-gauch_statistical_2006">
+<p>Gauch, H.G. 2006. “Statistical Analysis of Yield Trials by AMMI and GGE.” <em>Crop Sci</em> 46 (4): 1488–1500.</p>
+</div>
+<div id="ref-gauch_statistical_2008">
+<p>Gauch, H.G., H.S. Piepho, and P. Annicchiarico. 2008. “Statistical Analysis of Yield Trials by AMMI and GGE: Further Considerations.” <em>Crop Sci</em> 48 (3): 866–89.</p>
+</div>
+<div id="ref-gelman_inference_1992">
+<p>Gelman, A., and D.B. Rubin. 1992. “Inference from Iterative Simulation Using Multiple Sequences (with Discussion).” <em>Statistical Science</em>, no. 7: 457–511.</p>
+</div>
+<div id="ref-nabugoomu_analysis_1999">
+<p>Nabugoomu, F., R.A. Kempton, and M. Talbot. 1999. “Analysis of Series of Trials Where Varieties Differ in Sensitivity to Locations.” <em>Journal of Agricultural, Biological and Environnmental Statistics</em> 4 (3): 310–25.</p>
+</div>
+<div id="ref-plummer_penalized_2008">
+<p>Plummer, M. 2008. “Penalized Loss Functions for Bayesian Model Comparison.” <em>Biostatistics</em> 9 (3): 523–39.</p>
+</div>
+<div id="ref-riviere_hierarchical_2016">
+<p>Rivière, P., J.C. Dawson, I. Goldringer, and O. David. 2015. “Hierarchical Bayesian Modeling for Flexible Experiments in Decentralized Participatory Plant Breeding.” <em>Crop Science</em> 55 (3).</p> 2016. “Hierarchical Multiplicative Modeling of Genotype × Environment Interaction for Flexible Experiments in Decentralized Participatory Plant Breeding.” <em>In Prep</em>.</p>
+</div>
+<div id="ref-spiegelhalter_bayesian_2002">
+<p>Spiegelhalter, D. J., N. G. Best, B. P. Carlin, and A. Van Der Linde. 2002. “Bayesian Measures of Model Complexity and Fit.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 64 (4): 583–639.</p>
+</div>
+<div id="ref-wricke_uber_1962">
+<p>Wricke, G. 1962. “Uber Eine Methode Zur Erfassung Der Okologischen Streubreite in Feldversuchen.” <em>Zeitschrift Fur Pflanzenzuchtung-Journal of Plant Breeding</em> 47 (1): 92 –&amp;.</p>
+</div>
+<div id="ref-yan_gge_2007">
+<p>Yan, W., M.S. Kang, B. Ma, S. Woods, and P.L. Cornelius. 2007. “GGE Biplot Vs. AMMI Analysis of Genotype-by-Environment Data.” <em>Crop Science</em> 47: 643–355.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Note than in <code>PPBstats</code>, the PCA is done on <span class="math inline">\(\alpha\theta_{ij} + \varepsilon_{ijkl}\)</span>. The residuals is in the last dimension of the PCA<a href="family-2.html#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Note than in <code>PPBstats</code>, as for AMMI, the PCA is done on germplasm and interaction effects + residuals.<a href="family-2.html#fnref10" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="family-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="family-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/priviere/PPBstats/edit/master/310-agro_family_2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["PPBstats_book.pdf", "PPBstats_book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

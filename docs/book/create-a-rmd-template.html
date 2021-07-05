@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>6.2 Create a .Rmd template | PPBstats : An R package for Participatory Plant Breeding statisticial analyses</title>
+  <meta name="description" content="Tutorial on how to use the R package PPBstats.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="6.2 Create a .Rmd template | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Tutorial on how to use the R package PPBstats." />
+  <meta name="github-repo" content="priviere/PPBstats_vignette" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.2 Create a .Rmd template | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  
+  <meta name="twitter:description" content="Tutorial on how to use the R package PPBstats." />
+  
+
+<meta name="author" content="Pierre Rivière">
+
+
+<meta name="date" content="2019-03-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="run-the-analysis-1.html">
+<link rel="next" href="generate-a-report-for-each-location.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://priviere.github.io/PPBstats_web_site/index.html" >PPBstats website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i>Contact</a></li>
+<li><a href="authors-and-contributors-of-ppbstats-and-the-book.html#authors-and-contributors-of-ppbstats-and-the-book">Authors and contributors of <code>PPBstats</code> and the book</a></li>
+<li class="chapter" data-level="" data-path="copyright-licence-citation.html"><a href="copyright-licence-citation.html"><i class="fa fa-check"></i>Copyright, Licence, citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="philo.html"><a href="philo.html"><i class="fa fa-check"></i><b>1</b> Philosophy of PPBstats</a><ul>
+<li class="chapter" data-level="1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html"><i class="fa fa-check"></i><b>1.1</b> What is Participatory Plant Bredding ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#decentralize-the-selection"><i class="fa fa-check"></i><b>1.1.1</b> Decentralize the selection</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#involve-all-actors-in-the-breeding-decision-process"><i class="fa fa-check"></i><b>1.1.2</b> Involve all actors in the breeding decision process</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objectives-of-ppbstats.html"><a href="objectives-of-ppbstats.html"><i class="fa fa-check"></i><b>1.2</b> Objectives of <code>PPBstats</code></a></li>
+<li class="chapter" data-level="1.3" data-path="contribute.html"><a href="contribute.html"><i class="fa fa-check"></i><b>1.3</b> Contribute</a></li>
+<li class="chapter" data-level="1.4" data-path="design-and-statistical-methods-according-to-the-objectives.html"><a href="design-and-statistical-methods-according-to-the-objectives.html"><i class="fa fa-check"></i><b>1.4</b> Design and statistical methods according to the objectives</a></li>
+<li class="chapter" data-level="1.5" data-path="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><a href="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><i class="fa fa-check"></i><b>1.5</b> Let’s go: install <code>PPBstats</code> and the data used in the book!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>2</b> Analysis of network seed circulation (<strong>M8</strong>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#workflow-and-function-relations-in-ppbstats-regarding-network-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Workflow and function relations in <code>PPBstats</code> regarding network analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html"><i class="fa fa-check"></i><b>2.2</b> Unipart network for seed lots analysis</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#steps-with-ppbstats"><i class="fa fa-check"></i><b>2.2.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#format-the-data"><i class="fa fa-check"></i><b>2.2.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.2.3" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#describe-the-data"><i class="fa fa-check"></i><b>2.2.3</b> Describe the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html"><i class="fa fa-check"></i><b>2.3</b> Unipart network for location analysis</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#steps-with-ppbstats-1"><i class="fa fa-check"></i><b>2.3.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-the-data-1"><i class="fa fa-check"></i><b>2.3.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-germplasm"><i class="fa fa-check"></i><b>2.3.3</b> Format and describe the data for each germplasm</a></li>
+<li class="chapter" data-level="2.3.4" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-year"><i class="fa fa-check"></i><b>2.3.4</b> Format and describe the data for each year</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html"><i class="fa fa-check"></i><b>2.4</b> Bipart network analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#steps-with-ppbstats-2"><i class="fa fa-check"></i><b>2.4.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#format-the-data-2"><i class="fa fa-check"></i><b>2.4.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#describe-the-data-1"><i class="fa fa-check"></i><b>2.4.3</b> Describe the data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="agronomic.html"><a href="agronomic.html"><i class="fa fa-check"></i><b>3</b> Analysis of agronomic traits</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-agro.html"><a href="intro-agro.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-agro.html"><a href="intro-agro.html#objective-agro"><i class="fa fa-check"></i><b>3.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="intro-agro.html"><a href="intro-agro.html#family-analysis-agro"><i class="fa fa-check"></i><b>3.1.2</b> Family of analyses</a></li>
+<li class="chapter" data-level="3.1.3" data-path="intro-agro.html"><a href="intro-agro.html#expe-design"><i class="fa fa-check"></i><b>3.1.3</b> Experimental design</a></li>
+<li class="chapter" data-level="3.1.4" data-path="intro-agro.html"><a href="intro-agro.html#decision-tree"><i class="fa fa-check"></i><b>3.1.4</b> Decision tree</a></li>
+<li class="chapter" data-level="3.1.5" data-path="intro-agro.html"><a href="intro-agro.html#workflow-agro"><i class="fa fa-check"></i><b>3.1.5</b> Workflow and function relations in <code>PPBstats</code> regarding agronomic analysis</a></li>
+<li class="chapter" data-level="3.1.6" data-path="intro-agro.html"><a href="intro-agro.html#data-agro"><i class="fa fa-check"></i><b>3.1.6</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="doe.html"><a href="doe.html"><i class="fa fa-check"></i><b>3.2</b> Design the experiment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="doe.html"><a href="doe.html#fully-replicated"><i class="fa fa-check"></i><b>3.2.1</b> Fully-replicated (<strong>D1</strong>)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="doe.html"><a href="doe.html#ibd"><i class="fa fa-check"></i><b>3.2.2</b> Incomplete Block Design (<strong>D2</strong>)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="doe.html"><a href="doe.html#row-column"><i class="fa fa-check"></i><b>3.2.3</b> Row-column (<strong>D3</strong>)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="doe.html"><a href="doe.html#rf-sf"><i class="fa fa-check"></i><b>3.2.4</b> Regional and satellite farms (<strong>D4</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sow.html"><a href="sow.html"><i class="fa fa-check"></i><b>3.3</b> Sow, note, harvest, measure …</a></li>
+<li class="chapter" data-level="3.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html"><i class="fa fa-check"></i><b>3.4</b> Describe the data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="describe-data-agro.html"><a href="describe-data-agro.html#format-the-data-3"><i class="fa fa-check"></i><b>3.4.1</b> Format the data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="describe-data-agro.html"><a href="describe-data-agro.html#presence-abscence-matrix"><i class="fa fa-check"></i><b>3.4.2</b> presence abscence matrix</a></li>
+<li class="chapter" data-level="3.4.3" data-path="describe-data-agro.html"><a href="describe-data-agro.html#histogramm"><i class="fa fa-check"></i><b>3.4.3</b> histogramm</a></li>
+<li class="chapter" data-level="3.4.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html#barplot"><i class="fa fa-check"></i><b>3.4.4</b> barplot</a></li>
+<li class="chapter" data-level="3.4.5" data-path="describe-data-agro.html"><a href="describe-data-agro.html#boxplot"><i class="fa fa-check"></i><b>3.4.5</b> boxplot</a></li>
+<li class="chapter" data-level="3.4.6" data-path="describe-data-agro.html"><a href="describe-data-agro.html#interaction"><i class="fa fa-check"></i><b>3.4.6</b> interaction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="describe-data-agro.html"><a href="describe-data-agro.html#biplot"><i class="fa fa-check"></i><b>3.4.7</b> biplot</a></li>
+<li class="chapter" data-level="3.4.8" data-path="describe-data-agro.html"><a href="describe-data-agro.html#radar"><i class="fa fa-check"></i><b>3.4.8</b> radar</a></li>
+<li class="chapter" data-level="3.4.9" data-path="describe-data-agro.html"><a href="describe-data-agro.html#raster"><i class="fa fa-check"></i><b>3.4.9</b> raster</a></li>
+<li class="chapter" data-level="3.4.10" data-path="describe-data-agro.html"><a href="describe-data-agro.html#map"><i class="fa fa-check"></i><b>3.4.10</b> map</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="family-1.html"><a href="family-1.html"><i class="fa fa-check"></i><b>3.5</b> Family 1 of analysis : Compare different varieties evaluated for selection in different locations.</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="family-1.html"><a href="family-1.html#classic-anova"><i class="fa fa-check"></i><b>3.5.1</b> Classic ANOVA (<strong>M4a</strong>)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="family-1.html"><a href="family-1.html#spatial-analysis"><i class="fa fa-check"></i><b>3.5.2</b> Spatial analysis (<strong>M4b</strong>)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="family-1.html"><a href="family-1.html#ibd-model"><i class="fa fa-check"></i><b>3.5.3</b> Mixted model for incomplete block design (<strong>M5</strong>)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="family-1.html"><a href="family-1.html#model-1"><i class="fa fa-check"></i><b>3.5.4</b> Hierarchical Bayesian intra-location model to perform mean comparisons with each farm (<strong>M7a</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="family-2.html"><a href="family-2.html"><i class="fa fa-check"></i><b>3.6</b> Family 2 of analysis : Study the response of varieties under selection over several environments</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="family-2.html"><a href="family-2.html#ammi"><i class="fa fa-check"></i><b>3.6.1</b> AMMI (<strong>M6a</strong>)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="family-2.html"><a href="family-2.html#gge"><i class="fa fa-check"></i><b>3.6.2</b> GGE (<strong>M6b</strong>)</a></li>
+<li class="chapter" data-level="3.6.3" data-path="family-2.html"><a href="family-2.html#model-2"><i class="fa fa-check"></i><b>3.6.3</b> Hierarchical Bayesian <span class="math inline">\(G \times E\)</span> model to analyse <span class="math inline">\(G \times E\)</span> interaction in the network of farms (<strong>M7b</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="family-3.html"><a href="family-3.html"><i class="fa fa-check"></i><b>3.7</b> Family 3 of analysis : effects from family 1 and 2 in a network of farms</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="family-3.html"><a href="family-3.html#model-3"><i class="fa fa-check"></i><b>3.7.1</b> model 3</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="family-4.html"><a href="family-4.html"><i class="fa fa-check"></i><b>3.8</b> Family 4 of analysis : specific research questions on one farm or more</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="family-4.html"><a href="family-4.html#version"><i class="fa fa-check"></i><b>3.8.1</b> Version</a></li>
+<li class="chapter" data-level="3.8.2" data-path="family-4.html"><a href="family-4.html#variance-intra"><i class="fa fa-check"></i><b>3.8.2</b> Variance intra : to estimate variance within germplasm</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="family-5.html"><a href="family-5.html"><i class="fa fa-check"></i><b>3.9</b> Family 5 of analysis : multivariate analysis</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="family-5.html"><a href="family-5.html#steps-with-ppbstats-9"><i class="fa fa-check"></i><b>3.9.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="3.9.2" data-path="family-5.html"><a href="family-5.html#format-the-data-10"><i class="fa fa-check"></i><b>3.9.2</b> Format the data</a></li>
+<li class="chapter" data-level="3.9.3" data-path="family-5.html"><a href="family-5.html#look-at-correlation"><i class="fa fa-check"></i><b>3.9.3</b> Look at correlation</a></li>
+<li class="chapter" data-level="3.9.4" data-path="family-5.html"><a href="family-5.html#run-the-analysis"><i class="fa fa-check"></i><b>3.9.4</b> Run the analysis</a></li>
+<li class="chapter" data-level="3.9.5" data-path="family-5.html"><a href="family-5.html#check-outputs-and-results"><i class="fa fa-check"></i><b>3.9.5</b> Check outputs and results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="organoleptic.html"><a href="organoleptic.html"><i class="fa fa-check"></i><b>4</b> Sensory analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="intro-organo.html"><a href="intro-organo.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="intro-organo.html"><a href="intro-organo.html#objective-organo"><i class="fa fa-check"></i><b>4.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intro-organo.html"><a href="intro-organo.html#decision-tree-organo"><i class="fa fa-check"></i><b>4.1.2</b> Decision tree</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intro-organo.html"><a href="intro-organo.html#workflow-organo"><i class="fa fa-check"></i><b>4.1.3</b> Workflow and function relations in <code>PPBstats</code> regarding organoleptic analysis</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intro-organo.html"><a href="intro-organo.html#data-organo"><i class="fa fa-check"></i><b>4.1.4</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="taste.html"><a href="taste.html"><i class="fa fa-check"></i><b>4.2</b> Taste and measure …</a></li>
+<li class="chapter" data-level="4.3" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>4.3</b> Hedonic analysis (<strong>M9b</strong>)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="hedonic.html"><a href="hedonic.html#method-description"><i class="fa fa-check"></i><b>4.3.1</b> Method description</a></li>
+<li class="chapter" data-level="4.3.2" data-path="hedonic.html"><a href="hedonic.html#steps-with-ppbstats-10"><i class="fa fa-check"></i><b>4.3.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="hedonic.html"><a href="hedonic.html#format-the-data-11"><i class="fa fa-check"></i><b>4.3.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.3.4" data-path="hedonic.html"><a href="hedonic.html#describe-the-data-5"><i class="fa fa-check"></i><b>4.3.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.3.5" data-path="hedonic.html"><a href="hedonic.html#run-the-model-7"><i class="fa fa-check"></i><b>4.3.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.3.6" data-path="hedonic.html"><a href="hedonic.html#check-and-visualize-model-outputs-7"><i class="fa fa-check"></i><b>4.3.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.3.7" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-mean-comparisons-on-note"><i class="fa fa-check"></i><b>4.3.7</b> Get and visualize mean comparisons on note</a></li>
+<li class="chapter" data-level="4.3.8" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-biplot-regarding-samples-ca-and-juges-hcpc"><i class="fa fa-check"></i><b>4.3.8</b> Get and visualize biplot regarding samples (CA) and juges (HCPC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="napping.html"><a href="napping.html"><i class="fa fa-check"></i><b>4.4</b> Napping analysis (<strong>M9a</strong>)</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="napping.html"><a href="napping.html#method-description-1"><i class="fa fa-check"></i><b>4.4.1</b> Method description</a></li>
+<li class="chapter" data-level="4.4.2" data-path="napping.html"><a href="napping.html#steps-with-ppbstats-11"><i class="fa fa-check"></i><b>4.4.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="napping.html"><a href="napping.html#format-the-data-12"><i class="fa fa-check"></i><b>4.4.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.4.4" data-path="napping.html"><a href="napping.html#describe-the-data-6"><i class="fa fa-check"></i><b>4.4.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.4.5" data-path="napping.html"><a href="napping.html#run-the-model-8"><i class="fa fa-check"></i><b>4.4.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.4.6" data-path="napping.html"><a href="napping.html#check-and-visualize-model-outputs-8"><i class="fa fa-check"></i><b>4.4.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.4.7" data-path="napping.html"><a href="napping.html#get-and-visualize-biplot-2"><i class="fa fa-check"></i><b>4.4.7</b> Get and visualize biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="rank.html"><a href="rank.html"><i class="fa fa-check"></i><b>4.5</b> Rank analysis (<strong>M9c</strong>)</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="rank.html"><a href="rank.html#method-description-2"><i class="fa fa-check"></i><b>4.5.1</b> Method description</a></li>
+<li class="chapter" data-level="4.5.2" data-path="rank.html"><a href="rank.html#steps-with-ppbstats-12"><i class="fa fa-check"></i><b>4.5.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="rank.html"><a href="rank.html#format-the-data-13"><i class="fa fa-check"></i><b>4.5.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.5.4" data-path="rank.html"><a href="rank.html#run-the-model-9"><i class="fa fa-check"></i><b>4.5.4</b> Run the model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="molecular.html"><a href="molecular.html"><i class="fa fa-check"></i><b>5</b> Molecular analysis (<strong>M3</strong>)</a></li>
+<li class="chapter" data-level="6" data-path="com.html"><a href="com.html"><i class="fa fa-check"></i><b>6</b> Communicate results to farmers</a><ul>
+<li class="chapter" data-level="6.1" data-path="run-the-analysis-1.html"><a href="run-the-analysis-1.html"><i class="fa fa-check"></i><b>6.1</b> Run the analysis</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="run-the-analysis-1.html"><a href="run-the-analysis-1.html#format-data-3"><i class="fa fa-check"></i><b>6.1.1</b> Format data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="run-the-analysis-1.html"><a href="run-the-analysis-1.html#descriptive-plots-for-each-location"><i class="fa fa-check"></i><b>6.1.2</b> Descriptive plots for each location</a></li>
+<li class="chapter" data-level="6.1.3" data-path="run-the-analysis-1.html"><a href="run-the-analysis-1.html#gge-model-for-all-locations"><i class="fa fa-check"></i><b>6.1.3</b> GGE model for all locations</a></li>
+<li class="chapter" data-level="6.1.4" data-path="run-the-analysis-1.html"><a href="run-the-analysis-1.html#create-a-list-with-all-results"><i class="fa fa-check"></i><b>6.1.4</b> Create a list with all results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="create-a-rmd-template.html"><a href="create-a-rmd-template.html"><i class="fa fa-check"></i><b>6.2</b> Create a <code>.Rmd</code> template</a></li>
+<li class="chapter" data-level="6.3" data-path="generate-a-report-for-each-location.html"><a href="generate-a-report-for-each-location.html"><i class="fa fa-check"></i><b>6.3</b> Generate a report for each location</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://priviere.github.io/PPBstats_web_site/index.html" target="_blank">PPBstats website</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>PPBstats</code> : An <code>R</code> package for Participatory Plant Breeding statisticial analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="create-a-.rmd-template" class="section level2">
+<h2><span class="header-section-number">6.2</span> Create a <code>.Rmd</code> template</h2>
+<p>Your template call two objects:</p>
+<ul>
+<li><code>params</code> which is list with parameter of the report</li>
+<li><code>res</code> which is a list with all results coming from the analysis</li>
+</ul>
+<p>Below is an example of a minimal template:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
+<span class="fu">title:</span><span class="at"> </span><span class="st">&quot;`r params$title`&quot;</span>
+<span class="fu">date:</span><span class="at"> </span><span class="st">&quot;`r format(Sys.time(), &#39;%d %B %Y&#39;)`&quot;</span>
+<span class="fu">author:</span><span class="at"> Flower Seed</span>
+<span class="fu">output:</span><span class="at"> </span>
+  <span class="fu">html_document:</span>
+    <span class="fu">toc:</span><span class="at"> TRUE</span>
+    <span class="fu">toc_float:</span><span class="at"> TRUE</span>
+<span class="ot">---</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="st">```</span><span class="dt">{r global_options,include=FALSE}</span>
+<span class="dt">knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)</span>
+<span class="st">```</span>
+
+<span class="co"># Introduction</span>
+Here is a beautiful report with all results of the year <span class="op">!</span>
+
+<span class="co"># Description of data on the location</span>
+
+<span class="st">```</span><span class="dt">{r}</span>
+<span class="dt">p = res$hist_locations[[location]]</span>
+<span class="dt">if(is.null(p)){print(&quot;No data for y1&quot;)}else {p}</span>
+<span class="st">```</span>
+
+
+<span class="co"># GGE analysis for the three locations</span>
+
+The germplasm effects are the following<span class="op">:</span>
+
+<span class="st">```</span><span class="dt">{r}</span>
+<span class="dt">res$res_gge$y1$p_out_mean_comparisons_gxe$germplasm</span>
+<span class="st">```</span>
+
+The which won where plot is the following<span class="op">:</span>
+
+<span class="st">```</span><span class="dt">{r}</span>
+<span class="dt">res$res_gge$y1$p_out_biplot_gxe$biplot$which_won_where</span>
+<span class="st">```</span></code></pre></div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="run-the-analysis-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="generate-a-report-for-each-location.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/priviere/PPBstats/edit/master/600-communicate.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["PPBstats_book.pdf", "PPBstats_book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
